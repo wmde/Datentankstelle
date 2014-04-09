@@ -1,0 +1,21 @@
+	<div class="col-md-4">
+		<div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+			<div class="slides"></div>
+			<h3 class="title"></h3>
+			<a class="prev">‹</a>
+			<a class="next">›</a>
+			<a class="play-pause"></a>
+			<ol class="indicator"></ol>
+		</div>
+
+		<script src="res/blueimp-gallery.min.js"></script>
+		<script>
+			var gallery = blueimp.Gallery(
+				<?php echo json_encode( $this->_fileList ); ?>,
+				{ 
+					container: '#blueimp-gallery-carousel',
+					carousel: true 
+				}
+			);
+		</script>
+	</div>

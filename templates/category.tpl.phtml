@@ -1,0 +1,32 @@
+	<div class="row">
+		<div class="col-md-12">
+			<h1><?php echo $this->_catTitle; ?></h1>
+			<div><?php echo nl2br( $this->_catInfo["LongDescription"] ); ?></div>
+		</div>
+	</div>
+
+	<?php if ( count( $this->_subCats ) > 0 ): ?>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Unterkategorien</h2>
+		</div>
+	</div>
+	<div class="row">
+		<?php foreach ( $this->_subCats as $item ): ?>
+		<a href="?action=category&subject=<?php echo $item["Title"]; ?>">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="tile catTile">
+					<?php if ( !empty( $item["Icon"] ) ): ?>
+					<div class="tileBackgroundImage" style="background-image: url(<?php echo $item["Icon"]; ?>);">
+						<!--img src="<?php echo $item["Icon"]; ?>" style="border: 0;" /-->
+					</div>
+					<?php endif; ?>
+
+					<h3><?php echo $item["Title"]; ?></h3>
+					<p><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+				</div>
+			</div>
+		</a>
+		<?php endforeach; ?>
+	</div>
+	<?php endif; ?>

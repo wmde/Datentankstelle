@@ -1,0 +1,69 @@
+<script>
+	$( document ).ready( function() {
+		//window.setInterval( checkDevices, 2000 );
+	});
+	
+	var checkDevices = function() {
+		$( "#dev" ).val( "" );
+
+		$.ajax({
+			url: "index.php",
+			data: { action: "check" }
+		}).done( function( response ) {
+			var deviceList = [];
+
+			// TODO: consider more than one connected device
+			$.each( $.parseJSON( response ), function( index, value ) {
+				deviceList.push( "<li>USB storage device connected: " + value + "</li>" );
+				$( "#dev" ).val( value );
+			});
+
+			// TODO: remove test output
+			$( "#deviceList" ).html( "<ul>" + deviceList.join() + "</ul>" );
+			//
+
+			// disable download button if no storage device connected
+			$( "#btnDownload" ).attr( "disabled", $( "#dev" ).val() !== "" ? false : "disabled" );
+		});
+	}
+</script>
+	<div class="row">
+		<div class="col-md-8">
+			<h1><?php echo $this->_setTitle; ?></h1>
+			<div class="setShort"><?php echo nl2br( $this->_dataSet["ShortDescription"][0] ); ?></div>
+			<div class="setInfo">
+				<?php if ( $this->createImageThumb() ): ?>
+				<img src="<?php echo $this->_setImage; ?>" style="float: left; margin-right: 10px;" />
+				<?php endif; ?>
+				<?php echo nl2br( $this->_dataSet["LongDescription"][0] ); ?>
+				<div style="clear: both;"></div>
+				<ul>
+					<li>Autor: <?php echo $this->_dataSet["Author"][0]; ?></li>
+					<li>Supplier: <?php echo $this->_dataSet["Supplier"][0]; ?></li>
+					<li>Lizenz: <?php echo $this->_dataSet["Licence"][0]; ?></li>
+
+					<form name="dlForm" method="GET">
+						<input type="hidden" name="action" id="action" value="download" />
+						<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $this->_setTitle ); ?>" />
+						<input type="hidden" name="dev" id="dev" value="" />
+						<button type="button" id="btnDownload" disabled="disabled" class="btn btn-default">Herunterladen</button>
+					</form>
+
+					<!-- a href="#">Preview</a -->
+				</ul>
+			</div>
+		</div>
+<?php
+switch( $this->_dataSet["MediaType"][0] ) {
+	case "images":
+		include( "templates/gallery.tpl.phtml" );
+		break;
+	case "audio":
+		include( "templates/audio-player.tpl.phtml" );
+		break;
+	default:
+		break;
+}
+?>
+
+	</div>

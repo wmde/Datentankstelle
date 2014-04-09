@@ -1,0 +1,20 @@
+<?php if ( count( $this->_dataSets ) > 0 ): ?>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Datensets</h2>
+		</div>
+	</div>
+	<div class="row">
+		<?php foreach ( $this->_dataSets as $item ): ?>
+		<div class="col-md-6">
+			<a href="?action=dataset&subject=<?php echo $item["Title"]; ?>">
+				<div class="tile catTile">
+					<h3><?php echo $item["Title"]; ?></h3>
+					<p><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+				</div>
+			</a>
+		</div>
+		<?php endforeach; ?>
+		<div style="clear: both;"></div>
+	</div>
+<?php endif; ?>
