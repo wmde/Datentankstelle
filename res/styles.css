@@ -2,21 +2,19 @@
 	-webkit-box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
 	-moz-box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
 	box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
+	padding: 20px;
+	border-radius: 16px;
 }
 
 .catTile {
 	height: 254px;
-	border-radius: 16px;
 	margin: 20px 5px;
-	padding: 20px;
 	background-color: #CEE3F6;
 }
 
 .setTile {
 	height: 200px;
-	border-radius: 16px;
-	margin: 5px;
-	padding: 20px;
+	margin: 20px 5px;
 }
 
 .tileBackgroundImage {
@@ -29,4 +27,13 @@
 	width: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+
+.infoBox {
+	background-color: #DDDDDD;
+}
+
+#dlDisabled {
+	background-color: #EEEEEE;
+	padding: 10px;
 }

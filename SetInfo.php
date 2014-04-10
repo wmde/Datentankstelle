@@ -8,7 +8,7 @@ class SetInfo extends ApiRequest {
 	private $_setImage;
 	private $_dataSet;
 	private $_dataSets;
-	private $_fileList;
+	private $_fileList = array();
 
 	private $_dataFields = array(
 		"ParentCategory",
@@ -136,14 +136,16 @@ class SetInfo extends ApiRequest {
 			);
 
 			$dataSets = $this->sendRequest( $params );
-			foreach( $dataSets["query"]["results"] as $title => $info ) {
-				if( is_array( $info["printouts"]["ShortDescription"] ) && 
-						!empty( $info["printouts"]["ShortDescription"][0] ) ) {
+			if( !array_key_exists( "error", $dataSets ) ) {
+				foreach( $dataSets["query"]["results"] as $title => $info ) {
+					if( is_array( $info["printouts"]["ShortDescription"] ) && 
+							!empty( $info["printouts"]["ShortDescription"][0] ) ) {
 
-					$retVal[] = array(
-						"Title" => $title,
-						"ShortDescription" => $info["printouts"]["ShortDescription"][0]
-					);
+						$retVal[] = array(
+							"Title" => $title,
+							"ShortDescription" => $info["printouts"]["ShortDescription"][0]
+						);
+					}
 				}
 			}
 		}
@@ -176,6 +178,23 @@ class SetInfo extends ApiRequest {
 		return false;
 	}
 	
+	public function includeMediaPreview() {
+		if ( is_array( $this->_fileList ) && count( $this->_fileList ) > 0 ) {
+			switch( $this->_dataSet["MediaType"][0] ) {
+				case "images":
+					include( "templates/gallery.tpl.phtml" );
+					break;
+				case "audio":
+					include( "templates/audio-player.tpl.phtml" );
+					break;
+				default:
+					break;
+			}
+		} else if ( $this->createImageThumb() ) {
+			echo '<img src="' . $this->_setImage . '" style="float: left; margin-right: 10px;" />';
+		}
+	}
+	
 	public function getAudioFileInfo( $filelist ) {
 		$mediaInfo = new MediaInfo();
 		$info = $mediaInfo->getID3InfoByFilelist( $filelist );
@@ -197,5 +216,9 @@ class SetInfo extends ApiRequest {
 		}
 
 		return false;
+	}
+	
+	public function isLocalSystem() {
+		return ( $_SERVER["REMOTE_ADDR"] === "127.0.0.1" ? true : false );
 	}
 }
