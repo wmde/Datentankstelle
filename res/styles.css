@@ -4,17 +4,19 @@
 	box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
 	padding: 20px;
 	border-radius: 16px;
+	margin: 10px;
 }
 
 .catTile {
 	height: 254px;
-	margin: 20px 5px;
-	background-color: #CEE3F6;
+	//margin: 20px 5px;
+	background-color: #428bca;
+	color: white;
 }
 
 .setTile {
 	height: 200px;
-	margin: 20px 5px;
+	//margin: 20px 5px;
 }
 
 .tileBackgroundImage {

@@ -1,15 +1,17 @@
 <?php include( "templates/controls.tpl.phtml" ); ?>
-	<div class="row">
-		<div class="col-lg-12">
-			<h1>Suchergebnis</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Suchergebnis</h2>
+			</div>
 		</div>
-	</div>
 <?php if ( count( $this->_dataSets ) > 0 ): ?>
 <?php include( "templates/set-list.tpl.phtml" ); ?>
 <?php else: ?>
-	<div class="row">
-		<div class="col-lg-12">
-			<p>Es wurden keine Datensätze gefunden.</p>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Es wurden keine Datensätze gefunden.</p>
+			</div>
 		</div>
-	</div>
 <?php endif; ?>
+	</div>
