@@ -59,8 +59,8 @@ class ApiRequest {
 	 * @return string
 	 */
 	protected function _filterResults( $value ) {
-		if ( count( $value ) > 0 && is_object( $value[0] ) ) {
-			return $value[0]->fulltext;
+		if ( count( $value ) > 0 && is_array( $value[0] ) ) {
+			return $value[0]["fulltext"];
 		} elseif ( !empty( $value ) && isset( $value[0] ) ) {
 			return $value[0];
 		} else {
