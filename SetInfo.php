@@ -250,10 +250,10 @@ class SetInfo extends ApiRequest {
 
 	public function getLicenceLink( $lName ) {
 		if ( array_key_exists( $lName, $this->_licences ) ) {
-			return $this->_licences[$lName];
+			return '<a href="' . $this->_licences[$lName] . '">' . $lName . '</a>';
 		}
 
-		return false;
+		return $lName;
 	}
 	
 	public function getAudioFileInfo( $filelist ) {
