@@ -1,6 +1,7 @@
 <?php
 require_once( "ApiRequest.php" );
 require_once( "MediaInfo.php" );
+require_once( "CategoryInfo.php" );
 
 class SetInfo extends ApiRequest {
 
@@ -8,6 +9,7 @@ class SetInfo extends ApiRequest {
 	private $_setImage;
 	private $_dataSet;
 	private $_dataSets;
+	private $_breadCrumbs = array();
 	private $_fileList = array();
 
 	private $_dataFields = array(
@@ -21,13 +23,36 @@ class SetInfo extends ApiRequest {
 		"FileName",
 		"MediaType"
 	);
+	
+	private $_licences = array(
+		"CC-0"						=> "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
+		"CC-BY 3.0"					=> "https://creativecommons.org/licenses/by/3.0/deed.de",
+		"CC-BY 3.0 Deutschland"		=> "https://creativecommons.org/licenses/by/3.0/deed.de",
+		"CC-BY 4.0"					=> "https://creativecommons.org/licenses/by/4.0/deed.de",
+		"CC-BY-SA 2.0"				=> "https://creativecommons.org/licenses/by-sa/2.0/deed.de",
+		"CC-BY-SA 2.0 Österreich"	=> "https://creativecommons.org/licenses/by-sa/2.0/at/",
+		"CC-BY-SA 2.5"				=> "https://creativecommons.org/licenses/by-sa/2.5/deed.de",
+		"CC-BY-SA 3.0"				=> "https://creativecommons.org/licenses/by-sa/3.0/deed.de",
+		"CC-BY-SA 3.0 Deutschland"	=> "https://creativecommons.org/licenses/by-sa/3.0/de/",
+		"GeoNutzV"					=> "http://urheberrecht.wikimedia.de/2013/04/geodaten-geonutzv/",
+		"ODC-BY"					=> "http://opendatacommons.org/licenses/by/summary/",
+		"PD"						=> "https://creativecommons.org/publicdomain/zero/1.0/deed.de"
+	);
 
 	public function SetInfo( $setTitle, $displayType ) {
 		$this->_setTitle = $setTitle;
 
 		if ( $displayType === "singleSet" ) {
-			$this->_dataSet = $this->getDataSet( $setTitle );
-			switch( $this->_dataSet["MediaType"][0] ) {
+			$this->_dataSet = $this->populateSetInfo( $setTitle );
+			$parentCat = new CategoryInfo( $this->_dataSet["ParentCategory"], false );
+			$this->_breadCrumbs = $parentCat->getBreadcrumbs(
+					array(
+						$this->_setTitle,
+						$this->_dataSet["ParentCategory"]
+					)
+				);
+
+			switch( $this->_dataSet["MediaType"] ) {
 				case "images":
 					$this->_fileList = $this->getFileListByTitle( $setTitle );
 					break;
@@ -72,7 +97,7 @@ class SetInfo extends ApiRequest {
 		return $dataSets;
 	}
 
-	public function getDataSet( $title ) {
+	public function populateSetInfo( $title ) {
 		$params = array(
 			"action" => "askargs",
 			"format" => "php",
@@ -80,15 +105,18 @@ class SetInfo extends ApiRequest {
 			"printouts" => $this->_dataFields
 		);
 		$response = $this->sendRequest( $params );
-		return $response["query"]["results"][html_entity_decode( $title, ENT_QUOTES )]["printouts"];
+		foreach( $response["query"]["results"][html_entity_decode( $this->_setTitle, ENT_QUOTES )]["printouts"] as $key => $value ) {
+			$this->_dataSet[$key] = $this->_filterResults( $value );
+		}
+		return $this->_dataSet;
 	}
 
 	public function createImageThumb() {
-		if ( is_array( $this->_dataSet["Image"] ) && count( $this->_dataSet["Image"] ) > 0 ) {
+		if ( !empty( $this->_dataSet["Image"] ) ) {
 			$params = array(
 				"action" => "query",
 				"format" => "php",
-				"titles" => $this->_dataSet["Image"][0]["fulltext"],
+				"titles" => $this->_dataSet["Image"],
 				"prop" => "imageinfo",
 				"iiprop" => "url",
 				"iiurlwidth" => 240
@@ -191,8 +219,41 @@ class SetInfo extends ApiRequest {
 					break;
 			}
 		} else if ( $this->createImageThumb() ) {
-			echo '<img src="' . $this->_setImage . '" style="float: left; margin-right: 10px;" />';
+			echo '<img src="' . $this->_setImage . '" class="img-rounded" style="float: left; margin-right: 10px;" />';
 		}
+	}
+
+	public function calcFileSize() {
+		$unitIndex = 0;
+		$size = 0;
+		$units = array( "B", "kB", "MB", "GB" );
+
+		if ( !empty( $this->_dataSet["FileName"] ) && file_exists( "downloads/" . $this->_dataSet["FileName"] ) ) {
+			$size = filesize( "downloads/" . $this->_dataSet["FileName"] );
+
+			while ( $size > 1024 ) {
+				$unitIndex ++;
+				$size /= 1024;
+			}
+		}
+
+		return number_format( $size, 2, ',', "" ) . " " . $units[$unitIndex];
+	}
+	
+	public function getFileType() {
+		if ( !empty( $this->_dataSet["FileName"] ) && file_exists( "downloads/" . $this->_dataSet["FileName"] ) ) {
+			return pathinfo( "downloads/" . $this->_dataSet["FileName"], PATHINFO_EXTENSION );
+		}
+
+		return "&nbsp;";
+	}
+
+	public function getLicenceLink( $lName ) {
+		if ( array_key_exists( $lName, $this->_licences ) ) {
+			return $this->_licences[$lName];
+		}
+
+		return false;
 	}
 	
 	public function getAudioFileInfo( $filelist ) {

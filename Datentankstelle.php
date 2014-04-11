@@ -31,7 +31,7 @@ class Datentankstelle {
 			case "download":
 				# show template for given data set
 				$setInfo = new SetInfo();
-				$this->_dataSet = $setInfo->getDataSet( $this->_subject );
+				$this->_dataSet = $setInfo->populateSetInfo( $this->_subject );
 				$this->_fileList = $setInfo->getFileListByTitle( $this->_subject );
 				include( "templates/dataset.tpl.phtml" );
 

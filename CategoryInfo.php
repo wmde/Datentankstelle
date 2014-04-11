@@ -5,6 +5,7 @@ class CategoryInfo extends ApiRequest {
 
 	private $_catTitle;
 	private $_catInfo;
+	private $_breadCrumbs = array();
 
 	private $_dataFields = array(
 		"ParentCategory",
@@ -14,15 +15,18 @@ class CategoryInfo extends ApiRequest {
 	);
 	
 
-	public function CategoryInfo( $title ) {
+	public function CategoryInfo( $title, $fetchSubCats = true ) {
 		$this->_catTitle = $title;
 		$this->populateItemInfo( $title );
-		$this->_subCats = $this->getSubcategories( $title );
-		include( "templates/category.tpl.phtml" );
+		if ( $fetchSubCats ) {
+			$this->_subCats = $this->getSubcategories( $title );
+			$this->_breadCrumbs = $this->getBreadcrumbs( array( $this->_catTitle ) );
+
+			include( "templates/category.tpl.phtml" );
+		}
 	}
 
 	public function populateItemInfo() {
-		# TODO: consider pipe sign?
 		$params = array(
 			"action" => "askargs",
 			"format" => "php",
@@ -31,9 +35,21 @@ class CategoryInfo extends ApiRequest {
 		);
 		$response = $this->sendRequest( $params );
 
-		foreach( $response["query"]["results"][$this->_catTitle]["printouts"] as $key => $value ) {
-			$this->_catInfo[$key] = $this->_filterResults( $value );
+		if ( array_key_exists( "query", $response ) && count( $response["query"]["results"] ) > 0 ) {
+			foreach( $response["query"]["results"][$this->_catTitle]["printouts"] as $key => $value ) {
+				$this->_catInfo[$key] = $this->_filterResults( $value );
+			}
 		}
+	}
+	
+	public function getBreadcrumbs( $breadCrumbs ) {
+		if ( !empty( $this->_catInfo["ParentCategory"] ) ) {
+			$parentCat = new CategoryInfo( $this->_catInfo["ParentCategory"], false );
+			$breadCrumbs[] = $parentCat->_catTitle;
+			$breadCrumbs = $parentCat->getBreadCrumbs( $breadCrumbs );
+		}
+
+		return $breadCrumbs;
 	}
 	
 	public function getSubcategories( $catName ) {
