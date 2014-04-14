@@ -77,4 +77,28 @@ class CategoryInfo extends ApiRequest {
 
 		return $subCats;
 	}
+
+	public function getIconFileUrl( $icon ) {
+		$iconUrl = "";
+		if ( !empty( $icon ) ) {
+			$params = array(
+				"action" => "query",
+				"format" => "php",
+				"titles" => $icon,
+				"prop" => "imageinfo",
+				"iiprop" => "url"
+			);
+			$imgInfo = $this->sendRequest( $params );
+
+			foreach( $imgInfo["query"]["pages"] as $id => $values ) {
+				if ( intval( $id ) === -1 ) {
+					return false;
+				}
+
+				$iconUrl = $values["imageinfo"][0]["url"];
+			}
+		}
+
+		return $iconUrl;
+	}
 }
