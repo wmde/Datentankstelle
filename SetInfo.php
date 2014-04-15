@@ -223,13 +223,13 @@ class SetInfo extends ApiRequest {
 		}
 	}
 
-	public function calcFileSize() {
+	public function calcFileSize( $file ) {
 		$unitIndex = 0;
 		$size = 0;
 		$units = array( "B", "kB", "MB", "GB" );
 
-		if ( !empty( $this->_dataSet["FileName"] ) && file_exists( "downloads/" . $this->_dataSet["FileName"] ) ) {
-			$size = filesize( "downloads/" . $this->_dataSet["FileName"] );
+		if ( !empty( $file ) && file_exists( "downloads/" . $file ) ) {
+			$size = filesize( "downloads/" . $file );
 
 			while ( $size > 1024 ) {
 				$unitIndex ++;
@@ -240,9 +240,9 @@ class SetInfo extends ApiRequest {
 		return number_format( $size, 2, ',', "" ) . " " . $units[$unitIndex];
 	}
 	
-	public function getFileType() {
-		if ( !empty( $this->_dataSet["FileName"] ) && file_exists( "downloads/" . $this->_dataSet["FileName"] ) ) {
-			return pathinfo( "downloads/" . $this->_dataSet["FileName"], PATHINFO_EXTENSION );
+	public function getFileType( $file ) {
+		if ( !empty( $file ) && file_exists( "downloads/" . $file ) ) {
+			return pathinfo( "downloads/" . $file, PATHINFO_EXTENSION );
 		}
 
 		return "&nbsp;";

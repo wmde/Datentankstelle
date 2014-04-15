@@ -1,22 +1,69 @@
 <?php if ( count( $this->_dataSets ) > 0 ): ?>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h2>Datensets</h2>
-			</div>
-		</div>
-		<div class="row">
-			<?php foreach ( $this->_dataSets as $item ): ?>
-			<div class="col-md-6">
-				<a href="?action=dataset&subject=<?php echo $item["Title"]; ?>">
-					<div class="tile catTile">
-						<h3><?php echo $item["Title"]; ?></h3>
-						<p><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+	<?php $count = 0; ?>
+	<?php foreach ( $this->_dataSets as $item ): ?>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="tile setTile" onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle();">
+							<h3><?php echo $item["Title"]; ?></h3>
+							<p><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+							
+							<div class="row" style="display: none;" id="dataSetDetail<?php echo $count; ?>">
+								<div class="col-xs-8">
+									<p>
+										<?php $this->includeMediaPreview( $item["Title"] ); ?>
+										<?php echo nl2br( $item["LongDescription"] ); ?>
+									</p>
+								</div>
+								<div class="col-xs-4">
+									<div class="infoBox tile">
+										<h2>Datei-Informationen</h2>
+										<dt>Autor</dt>
+										<dd><?php echo $item["Author"]; ?></dd>
+										<dt>Lizenz</dt>
+										<dd><?php echo $this->getLicenceLink( $item["Licence"] ); ?></dd>
+										<dt>Dateigr&ouml;&szlig;e</dt>
+										<dd><?php echo $this->calcFileSize( $item["FileName"] ); ?></dd>
+										<dt>Dateityp</dt>
+										<dd><?php echo $this->getFileType( $item["FileName"] ); ?></dd>
+
+										<?php if ( !$this->isLocalSystem() ): ?>
+										<div id="dlDisabled">
+											<p style="text-align: center;">
+												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
+											</p>
+										</div>
+
+										<div id="dlEnabled" style="display: none;">
+											<form name="dlForm" method="GET">
+												<input type="hidden" name="action" id="action" value="download" />
+												<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $this->_setTitle ); ?>" />
+												<input type="hidden" name="dev" id="dev" value="" />
+												<div style="text-align: center;">
+													<button type="button" id="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
+												</div>
+											</form>
+										</div>
+										<script>
+											/*$( document ).ready( function() {
+												window.setInterval( checkDevices, 2000 );
+											});*/
+										</script>
+										<?php else: ?>
+										<div style="text-align: center;">
+											<form name="dlForm" method="GET" action="downloads/<?php echo @$this->_dataSet["FileName"]; ?>">
+												<button type="submit" id="btnDownload" class="btn btn-lg">Auftanken</button>
+											</form>
+										</div>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</a>
+				</div>
+		<?php $count++; ?>
+	<?php endforeach; ?>
+<?php endif; ?>
 			</div>
-			<?php endforeach; ?>
-			<div style="clear: both;"></div>
 		</div>
 	</div>
-<?php endif; ?>

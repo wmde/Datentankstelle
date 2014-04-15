@@ -23,21 +23,6 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1>Datentankstelle<small> von Wikimedia Deutschland e. V.</small></h1>
-					<div class="row">
-						<div class="col-lg-12">
-<?php if ( isset( $this->_breadCrumbs ) && count( $this->_breadCrumbs ) > 0 ): ?>
-							<ol class="breadcrumb">
-	<?php foreach ( array_reverse( $this->_breadCrumbs ) as $index => $crumb ): ?>
-		<?php if ( count( $this->_breadCrumbs ) - 1 === $index ): ?>
-								<li class="active"><?php echo $crumb; ?></li>
-		<?php else: ?>
-								<li><a href="?action=category&subject=<?php echo $crumb; ?>"><?php echo $crumb; ?></a></li>
-		<?php endif; ?>
-	<?php endforeach; ?>
-							</ol>
-<?php endif; ?>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

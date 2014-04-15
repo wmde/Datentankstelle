@@ -1,22 +1,20 @@
 .tile {
-	-webkit-box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
-	-moz-box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
-	box-shadow: 0 0 16px rgba( 0, 0, 0, 0.4 );
-	padding: 20px;
+	padding: 10px 20px 20px 20px;
 	border-radius: 16px;
 	margin: 10px;
 }
 
 .catTile {
 	height: 254px;
-	//margin: 20px 5px;
+	margin: 20px 5px;
 	background-color: #428bca;
 	color: white;
 }
 
 .setTile {
-	height: 200px;
-	//margin: 20px 5px;
+	margin: 20px 5px;
+	border: 2px solid #428bca;
+	cursor: pointer;
 }
 
 .tileBackgroundImage {
@@ -33,6 +31,7 @@
 
 .infoBox {
 	background-color: #DDDDDD;
+	color: black;
 }
 
 #dlDisabled {
