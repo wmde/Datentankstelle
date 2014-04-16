@@ -19,6 +19,10 @@
 										<h2>Datei-Informationen</h2>
 										<dt>Autor</dt>
 										<dd><?php echo $item["Author"]; ?></dd>
+										<?php if ( !empty( $item["Supplier"] ) ): ?>
+										<dt>Supplier</dt>
+										<dd><?php echo $item["Supplier"]; ?></dd>
+										<?php endif; ?>
 										<dt>Lizenz</dt>
 										<dd><?php echo $this->getLicenceLink( $item["Licence"] ); ?></dd>
 										<dt>Dateigr&ouml;&szlig;e</dt>
