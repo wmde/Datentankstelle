@@ -7,13 +7,13 @@
 .catTile {
 	height: 254px;
 	margin: 20px 5px;
-	background-color: #428bca;
+	background-color: #428BCA;
 	color: white;
 }
 
 .setTile {
 	margin: 20px 5px;
-	border: 2px solid #428bca;
+	border: 2px solid #428BCA;
 	cursor: pointer;
 }
 
@@ -37,4 +37,11 @@
 #dlDisabled {
 	background-color: #EEEEEE;
 	padding: 10px;
+}
+
+a.link-highlighted:link,
+a.link-highlighted:visited,
+a.link-highlighted:active,
+a.link-highlighted:hover {
+	color: #428BCA !important;
 }
