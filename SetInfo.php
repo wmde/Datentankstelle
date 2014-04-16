@@ -160,20 +160,18 @@ class SetInfo extends ApiRequest {
 			$params = array(
 				"action" => "ask",
 				"format" => "php",
-				"query" => "[[" . implode( "||", $titles ) . "]]|?ShortDescription"
+				"query" => "[[" . implode( "||", $titles ) . "]]|?" . implode( "|?", $this->_dataFields )
 			);
 
 			$dataSets = $this->sendRequest( $params );
 			if( !array_key_exists( "error", $dataSets ) ) {
+				$index = 0;
 				foreach( $dataSets["query"]["results"] as $title => $info ) {
-					if( is_array( $info["printouts"]["ShortDescription"] ) && 
-							!empty( $info["printouts"]["ShortDescription"][0] ) ) {
-
-						$retVal[] = array(
-							"Title" => $title,
-							"ShortDescription" => $info["printouts"]["ShortDescription"][0]
-						);
+					$retVal[$index] = array( "Title" => $title );
+					foreach( $info["printouts"] as $key => $value ) {
+						$retVal[$index][$key] = $this->_filterResults( $value );
 					}
+					$index ++;
 				}
 			}
 		}
