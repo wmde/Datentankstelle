@@ -58,7 +58,6 @@ class Datentankstelle {
 				# show template of main entry point
 				$this->_subject = "Hauptkategorie";
 				new CategoryInfo( $this->_subject );
-				new SetInfo( $this->_subject, "setList" );
 				break;
 		}
 		include( "templates/_foot.tpl.phtml" );
