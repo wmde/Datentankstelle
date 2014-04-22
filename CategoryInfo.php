@@ -87,7 +87,11 @@ class CategoryInfo extends ApiRequest {
 				if ( !empty( $info["Icon"] ) ) {
 					echo '<img src="' . $this->getIconFileUrl( $info["Icon"], 32 ) . '" style="padding-right: 10px;" />';
 				}
-				echo $title;
+				if ( $title === $this->_catTitle ) {
+					echo "<strong>" . $title . "</strong>";
+				} else {
+					echo $title;
+				}
 				echo '</a>';
 			}
 
