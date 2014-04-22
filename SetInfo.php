@@ -16,6 +16,7 @@ class SetInfo extends ApiRequest {
 		"ShortDescription",
 		"LongDescription",
 		"Image",
+		"Icon",
 		"Author",
 		"Supplier",
 		"Licence",
@@ -110,7 +111,7 @@ class SetInfo extends ApiRequest {
 		return $this->_dataSet;
 	}
 
-	public function createImageThumb( $fileName ) {
+	public function createImageThumb( $fileName, $width = 240 ) {
 		$url = "";
 
 		$params = array(
@@ -119,7 +120,7 @@ class SetInfo extends ApiRequest {
 			"titles" => $fileName,
 			"prop" => "imageinfo",
 			"iiprop" => "url",
-			"iiurlwidth" => 240
+			"iiurlwidth" => $width
 		);
 		$imgInfo = $this->sendRequest( $params );
 
