@@ -1,3 +1,73 @@
+<script>
+<?php if ( Util::isLocalSystem() ): ?>
+	$( document ).ready( function() {
+		window.setInterval( checkDevices, 2000 );
+	});
+<?php endif; ?>
+	var connectedDevice = '';
+	var initialCopyStatus = 'Betankung läuft...';
+	var initialCopyStatusClasses = 'glyphicon glyphicon-download text-primary';
+	var checkDevices = function() {
+		$.ajax({
+			url: "index.php",
+			data: { action: "check" }
+		}).done( function( response ) {
+			// TODO: consider more than one connected device
+			var objDevices = $.parseJSON( response );
+			connectedDevice = '';
+			$.each( objDevices, function( index, value ) {
+				connectedDevice = value;
+			});
+
+			// disable download button if no storage device connected
+			if ( connectedDevice === '' ) {
+				$( ".btnDownload" ).attr( "disabled", "disabled" );
+				$( ".dlEnabled" ).hide();
+				$( ".dlDisabled" ).show();
+			} else {
+				$( ".btnDownload" ).attr( "disabled", false );
+				$( ".dlEnabled" ).show();
+				$( ".dlDisabled" ).hide();
+			}
+		});
+	}
+
+	var copyDataSet = function( title ) {
+		$.ajax({
+			url: "index.php",
+			data: {
+				action: "download",
+				subject: title,
+				dev: connectedDevice
+			},
+			beforeSend: function() {
+				$( '#copyStatus' ).text( initialCopyStatus );
+				$( '#copyStatus-icon' ).attr( "class", initialCopyStatusClasses );
+				$( '#copyDialog' ).modal();
+			}
+		}).done( function( response ) {
+			var response = $.parseJSON( response );
+			if ( response.status === 'success' ) {
+				$( '#copyStatus' ).text( response.message );
+				$( '#copyStatus-icon' ).attr( "class", "glyphicon glyphicon-ok text-success" );
+			} else {
+				$( '#copyStatus' ).text( response.message );
+				$( '#copyStatus-icon' ).attr( "class", "glyphicon glyphicon-remove text-warning" );
+			}
+		});
+	}
+
+	var openCopyDialog = function() {
+		$( "#dialog-message" ).dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	}
+</script>
 <?php if ( count( $this->_dataSets ) > 0 ): ?>
 	<?php $count = 0; ?>
 	<?php foreach ( $this->_dataSets as $item ): ?>
@@ -28,40 +98,28 @@
 									<div class="infoBox tile">
 										<p class="lead">Dateidetails</p>
 										<dt>Autor</dt>
-										<dd><?php echo $item["Author"]; ?></dd>
+										<dd><?php echo nl2br( $item["Author"] ); ?></dd>
 										<?php if ( !empty( $item["Supplier"] ) ): ?>
 										<dt>Supplier</dt>
-										<dd><?php echo $item["Supplier"]; ?></dd>
+										<dd><?php echo nl2br( $item["Supplier"] ); ?></dd>
 										<?php endif; ?>
 										<dt>Lizenz</dt>
-										<dd><?php echo $this->getLicenceLink( $item["Licence"] ); ?></dd>
+										<dd><?php echo nl2br( $this->getLicenceLink( $item["Licence"] ) ); ?></dd>
 										<dt>Dateigr&ouml;&szlig;e</dt>
-										<dd><?php echo $this->calcFileSize( $item["FileName"] ); ?></dd>
+										<dd><?php echo Util::calcFileSize( $item["FileName"] ); ?></dd>
 										<dt>Dateityp</dt>
-										<dd><?php echo $this->getFileType( $item["FileName"] ); ?></dd>
+										<dd><?php echo Util::getFileType( $item["FileName"] ); ?></dd>
 
-										<?php if ( !$this->isLocalSystem() ): ?>
-										<div id="dlDisabled">
+										<?php if ( Util::isLocalSystem() ): ?>
+										<div class="dlDisabled">
 											<p style="text-align: center;">
 												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
 											</p>
 										</div>
 
-										<div id="dlEnabled" style="display: none;">
-											<form name="dlForm" method="GET">
-												<input type="hidden" name="action" id="action" value="download" />
-												<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $item["Title"] ); ?>" />
-												<input type="hidden" name="dev" id="dev" value="" />
-												<div style="text-align: center;">
-													<button type="button" id="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
-												</div>
-											</form>
+										<div class="dlEnabled" style="display: none;">
+											<button type="button" onclick="copyDataSet( '<?php echo $item["FileName"]?>' )" class="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
 										</div>
-										<script>
-											/*$( document ).ready( function() {
-												window.setInterval( checkDevices, 2000 );
-											});*/
-										</script>
 										<?php else: ?>
 										<div style="text-align: center;">
 											<form name="dlForm" method="GET" action="downloads/<?php echo @$this->_dataSet["FileName"]; ?>">
@@ -91,6 +149,30 @@
 					);
 				}
 			</script>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="copyDialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Auftanken...</h4>
+				</div>
+				<div class="modal-body">
+					<span id="copyStatus-icon" class="glyphicon glyphicon-download text-primary" style="float: left; font-size: 3em; margin-right: 20px;"></span>
+					<p id="copyStatus" style="line-height: 3em;">
+						Betankung läuft...<br />
+					</p>
+
+					<div id="digitRoll">
+						<div id="wrapper1" class="digit"></div>
+						<div id="wrapper2" class="digit"></div>
+						<div id="wrapper3" class="digit"></div>
+						<div id="wrapper4" class="digit" style="border: none;"></div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

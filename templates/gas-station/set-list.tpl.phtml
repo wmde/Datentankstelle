@@ -33,11 +33,11 @@
 										<dt>Lizenz</dt>
 										<dd><?php echo $this->getLicenceLink( $item["Licence"] ); ?></dd>
 										<dt>Dateigr&ouml;&szlig;e</dt>
-										<dd><?php echo $this->calcFileSize( $item["FileName"] ); ?></dd>
+										<dd><?php echo Util::calcFileSize( $item["FileName"] ); ?></dd>
 										<dt>Dateityp</dt>
-										<dd><?php echo $this->getFileType( $item["FileName"] ); ?></dd>
+										<dd><?php echo Util::getFileType( $item["FileName"] ); ?></dd>
 
-										<?php if ( !$this->isLocalSystem() ): ?>
+										<?php if ( !Util::isLocalSystem() ): ?>
 										<div id="dlDisabled">
 											<p style="text-align: center;">
 												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />

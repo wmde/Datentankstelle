@@ -1,29 +1,4 @@
 <?php include( "templates/" . $_SESSION["skin"] . "/controls.tpl.phtml" ); ?>
-<script>
-	var checkDevices = function() {
-		$( "#dev" ).val( "" );
-
-		$.ajax({
-			url: "index.php",
-			data: { action: "check" }
-		}).done( function( response ) {
-			var deviceList = [];
-
-			// TODO: consider more than one connected device
-			$.each( $.parseJSON( response ), function( index, value ) {
-				deviceList.push( "<li>USB storage device connected: " + value + "</li>" );
-				$( "#dev" ).val( value );
-			});
-
-			// TODO: remove test output
-			$( "#deviceList" ).html( "<ul>" + deviceList.join() + "</ul>" );
-			//
-
-			// disable download button if no storage device connected
-			$( "#btnDownload" ).attr( "disabled", $( "#dev" ).val() !== "" ? false : "disabled" );
-		});
-	}
-</script>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
@@ -44,11 +19,11 @@
 					<dt>Lizenz</dt>
 					<dd><?php echo $this->getLicenceLink( $this->_dataSet["Licence"] ); ?></dd>
 					<dt>Dateigr&ouml;&szlig;e</dt>
-					<dd><?php echo $this->calcFileSize(); ?></dd>
+					<dd><?php echo Util::calcFileSize(); ?></dd>
 					<dt>Dateityp</dt>
 					<dd><?php echo $this->getFileType(); ?></dd>
 
-					<?php if ( !$this->isLocalSystem() ): ?>
+					<?php if ( !Util::isLocalSystem() ): ?>
 					<div id="dlDisabled">
 						<p style="text-align: center;">
 							Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />

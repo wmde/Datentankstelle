@@ -1,3 +1,11 @@
+#footer {
+	background-color: #F5F5F5;
+	bottom: 0;
+	height: 60px;
+	position: absolute;
+	width: 100%;
+}
+
 .tile {
 	padding: 10px 20px 20px 20px;
 	border-radius: 16px;
@@ -44,4 +52,93 @@ a.link-highlighted:visited,
 a.link-highlighted:active,
 a.link-highlighted:hover {
 	color: #428BCA !important;
+}
+
+.blue {
+	color: #428BCA;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
+#digitRoll {
+    box-shadow: inset 0px 16px 12px -10px rgba( 0, 0, 0, 0.5 ),
+				inset 0px -16px 12px -10px rgba( 0, 0, 0, 0.5 ),
+				inset 10px 0px 8px -10px black,
+				inset -10px 0px 8px -10px black;
+    width: 132px;
+	margin: 0 auto;
+}
+
+
+
+div#digitRoll div.digit {
+    margin: 0 auto;
+    width: 32px;
+    height: 46px;
+    background: url(../img/counter-sprite.png) center top repeat-y;
+    position: relative;
+    z-index: 10;
+    overflow: auto;
+    float: left;
+    border-right: 1px solid black;
+}
+
+@-webkit-keyframes rollingNumbers {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -490px; }
+}
+
+@-moz-keyframes rollingNumbers {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -490px; }
+}
+
+@-ms-keyframes rollingNumbers {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -490px; }
+}
+
+@-o-keyframes rollingNumbers {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -490px; }
+}
+
+@keyframes rollingNumbers {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -490px; }
+}
+
+#wrapper1 {
+    -webkit-animation: rollingNumbers 100s linear infinite;
+    -moz-animation: rollingNumbers 100s linear infinite;
+    -ms-animation: rollingNumbers 100s linear infinite;
+    -o-animation: rollingNumbers 100s linear infinite;
+    animation: rollingNumbers 100s linear infinite;
+}
+#wrapper2 {
+    -webkit-animation: rollingNumbers 10s linear infinite;
+    -moz-animation: rollingNumbers 10s linear infinite;
+    -ms-animation: rollingNumbers 10s linear infinite;
+    -o-animation: rollingNumbers 10s linear infinite;
+    animation: rollingNumbers 10s linear infinite;
+}
+#wrapper3 {
+    -webkit-animation: rollingNumbers 1s linear infinite;
+    -moz-animation: rollingNumbers 1s linear infinite;
+    -ms-animation: rollingNumbers 1s linear infinite;
+    -o-animation: rollingNumbers 1s linear infinite;
+    animation: rollingNumbers 1s linear infinite;
+}
+#wrapper4 {
+    -webkit-animation: rollingNumbers 100ms linear infinite;
+    -moz-animation: rollingNumbers 100ms linear infinite;
+    -ms-animation: rollingNumbers 100ms linear infinite;
+    -o-animation: rollingNumbers 100ms linear infinite;
+    animation: rollingNumbers 100ms linear infinite;
 }
