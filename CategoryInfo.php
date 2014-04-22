@@ -83,7 +83,7 @@ class CategoryInfo extends ApiRequest {
 		foreach( $tree as $title => $info ) {
 			// TODO: top category may have a different name
 			if ( $title !== "Hauptkategorie" ) {
-				echo '<a href="?action=category&subject=' . $title .  '" style="padding-left: ' . ( 15 + $indentation * 10 ) . 'px;" class="list-group-item">';
+				echo '<a href="?action=category&subject=' . $title .  '" style="padding-left: ' . ( 15 + $indentation * 20 ) . 'px;" class="list-group-item">';
 				if ( !empty( $info["Icon"] ) ) {
 					echo '<img src="' . $this->getIconFileUrl( $info["Icon"], 32 ) . '" style="padding-right: 10px;" />';
 				}

@@ -2,15 +2,15 @@
 <?php $catTree = $this->getCategoryTree(); ?>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3 hidden-xs hidden-sm" style="padding-top: 16px; font-size: 21px;">
+			<div class="col-sm-4 hidden-xs hidden-sm" style="padding-top: 16px; font-size: 21px;">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Kategorien</div>
+					<div class="panel-heading" style="background-color: #1D4A9D !important;">Kategorien</div>
 					<div class="list-group">
 						<?php echo $this->iterateCategoryTree( $catTree ); ?>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-9 col-sm-12">
+			<div class="col-md-8 col-sm-12">
 				<h2><?php echo $this->_catTitle; ?></h2>
 				<p class="lead"><?php echo nl2br( $this->_catInfo["ShortDescription"] ); ?></p>
 				<p><?php echo nl2br( $this->_catInfo["LongDescription"] ); ?></p>
