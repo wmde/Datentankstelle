@@ -111,30 +111,27 @@ class SetInfo extends ApiRequest {
 		return $this->_dataSet;
 	}
 
-	public function createImageThumb() {
-		if ( !empty( $this->_dataSet["Image"] ) ) {
-			$params = array(
-				"action" => "query",
-				"format" => "php",
-				"titles" => $this->_dataSet["Image"],
-				"prop" => "imageinfo",
-				"iiprop" => "url",
-				"iiurlwidth" => 240
-			);
-			$imgInfo = $this->sendRequest( $params );
+	public function createImageThumb( $fileName ) {
+		$url = "";
 
-			foreach( $imgInfo["query"]["pages"] as $id => $values ) {
-				if ( intval( $id ) === -1 ) {
-					return false;
-				}
+		$params = array(
+			"action" => "query",
+			"format" => "php",
+			"titles" => $fileName,
+			"prop" => "imageinfo",
+			"iiprop" => "url",
+			"iiurlwidth" => 240
+		);
+		$imgInfo = $this->sendRequest( $params );
 
-				$info = $values["imageinfo"][0]["thumburl"];
+		foreach( $imgInfo["query"]["pages"] as $id => $values ) {
+			if ( intval( $id ) === -1 ) {
+				return false;
 			}
-			$this->_setImage = $info;
-			return true;
-		}
 
-		return false;
+			$url = $values["imageinfo"][0]["thumburl"];
+		}
+		return $url;
 	}
 	
 	public function searchDataSets( $subject ) {
@@ -204,9 +201,9 @@ class SetInfo extends ApiRequest {
 		return false;
 	}
 	
-	public function includeMediaPreview() {
-		if ( is_array( $this->_fileList ) && count( $this->_fileList ) > 0 ) {
-			switch( $this->_dataSet["MediaType"][0] ) {
+	public function includeMediaPreview( $count, $type, $fileList = array() ) {
+		if ( is_array( $fileList ) && count( $fileList ) > 0 ) {
+			switch( $type ) {
 				case "images":
 					include( "templates/gallery.tpl.phtml" );
 					break;
@@ -216,8 +213,6 @@ class SetInfo extends ApiRequest {
 				default:
 					break;
 			}
-		} else if ( $this->createImageThumb() ) {
-			echo '<img src="' . $this->_setImage . '" class="img-rounded" style="float: left; margin-right: 10px;" />';
 		}
 	}
 
