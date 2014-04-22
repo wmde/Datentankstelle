@@ -216,29 +216,10 @@ class SetInfo extends ApiRequest {
 		}
 	}
 
-	public function calcFileSize( $file ) {
-		$unitIndex = 0;
-		$size = 0;
-		$units = array( "B", "kB", "MB", "GB" );
-
-		if ( !empty( $file ) && file_exists( "downloads/" . $file ) ) {
-			$size = filesize( "downloads/" . $file );
-
-			while ( $size > 1024 ) {
-				$unitIndex ++;
-				$size /= 1024;
-			}
-		}
-
-		return number_format( $size, 2, ',', "" ) . " " . $units[$unitIndex];
-	}
-	
-	public function getFileType( $file ) {
-		if ( !empty( $file ) && file_exists( "downloads/" . $file ) ) {
-			return pathinfo( "downloads/" . $file, PATHINFO_EXTENSION );
-		}
-
-		return "&nbsp;";
+	public function getAudioFileInfo( $filelist ) {
+		$mediaInfo = new MediaInfo();
+		$info = $mediaInfo->getID3InfoByFilelist( $filelist );
+		return $info;
 	}
 
 	public function getLicenceLink( $lName ) {
@@ -247,32 +228,5 @@ class SetInfo extends ApiRequest {
 		}
 
 		return $lName;
-	}
-	
-	public function getAudioFileInfo( $filelist ) {
-		$mediaInfo = new MediaInfo();
-		$info = $mediaInfo->getID3InfoByFilelist( $filelist );
-		return $info;
-	}
-
-	public function checkForDevices() {
-		if ( file_exists( USB_MOUNT_DIR ) ) {
-			$list = array_diff( scandir( USB_MOUNT_DIR ), array( ".", ".." ) );
-			return $list;
-		}
-
-		return false;
-	}
-
-	public function copyToDevice( $fileName, $deviceName ) {
-		if ( copy( "downloads/" . $fileName, USB_MOUNT_DIR . $deviceName . "/" . $fileName ) ) {
-			return true;
-		}
-
-		return false;
-	}
-	
-	public function isLocalSystem() {
-		return ( $_SERVER["REMOTE_ADDR"] === "127.0.0.1" ? true : false );
 	}
 }
