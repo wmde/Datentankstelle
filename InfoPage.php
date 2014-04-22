@@ -3,8 +3,6 @@ require_once( "ApiRequest.php" );
 
 class InfoPage extends ApiRequest {
 
-	protected $_template = "templates/info.tpl.phtml";
-
 	private $_pageTitle;
 	private $_pageContent;
 
@@ -12,7 +10,7 @@ class InfoPage extends ApiRequest {
 		$this->_pageTitle = $pageTitle;
 		$this->_pageContent = $this->getPageContent( $this->_pageTitle );
 
-		include( "templates/info.tpl.phtml" );
+		include( "templates/" . $_SESSION["skin"] . "/info.tpl.phtml" );
 	}
 
 	public function getPageContent() {

@@ -6,7 +6,6 @@ require_once( "CategoryInfo.php" );
 class SetInfo extends ApiRequest {
 
 	private $_setTitle;
-	private $_setImage;
 	private $_dataSet;
 	private $_dataSets;
 	private $_breadCrumbs = array();
@@ -61,13 +60,13 @@ class SetInfo extends ApiRequest {
 					break;
 			}
 
-			include( "templates/dataset.tpl.phtml" );
+			include( "templates/" . $_SESSION["skin"] . "/dataset.tpl.phtml" );
 		} elseif( $displayType === "searchResult" ) {
 			$this->_dataSets = $this->searchDataSets( $setTitle );
-			include( "templates/search-result.tpl.phtml" );
+			include( "templates/" . $_SESSION["skin"] . "/search-result.tpl.phtml" );
 		} elseif( $displayType === "setList" ) {
 			$this->_dataSets = $this->getDataSets( $setTitle );
-			include( "templates/set-list.tpl.phtml" );
+			include( "templates/" . $_SESSION["skin"] . "/set-list.tpl.phtml" );
 		}
 	}
 
@@ -205,10 +204,10 @@ class SetInfo extends ApiRequest {
 		if ( is_array( $fileList ) && count( $fileList ) > 0 ) {
 			switch( $type ) {
 				case "images":
-					include( "templates/gallery.tpl.phtml" );
+					include( "templates/" . $_SESSION["skin"] . "/gallery.tpl.phtml" );
 					break;
 				case "audio":
-					include( "templates/audio-player.tpl.phtml" );
+					include( "templates/" . $_SESSION["skin"] . "/audio-player.tpl.phtml" );
 					break;
 				default:
 					break;

@@ -22,9 +22,9 @@ class CategoryInfo extends ApiRequest {
 			$this->_subCats = $this->getSubcategories( $title );
 
 			if ( empty( $this->_catInfo["ParentCategory"] ) ) {
-				include( "templates/category.tpl.phtml" );
+				include( "templates/" . $_SESSION["skin"] . "/category.tpl.phtml" );
 			} else {
-				include( "templates/subcategory.tpl.phtml" );
+				include( "templates/" . $_SESSION["skin"] . "/subcategory.tpl.phtml" );
 			}
 		}
 	}

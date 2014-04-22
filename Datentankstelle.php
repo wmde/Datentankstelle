@@ -17,7 +17,7 @@ class Datentankstelle {
 	}
 
 	public function processRequest() {
-		include( "templates/_head.tpl.phtml" );
+		include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 		switch( $this->_action ) {
 			case "category":
 				# show template for given category
@@ -33,7 +33,7 @@ class Datentankstelle {
 				$setInfo = new SetInfo();
 				$this->_dataSet = $setInfo->populateSetInfo( $this->_subject );
 				$this->_fileList = $setInfo->getFileListByTitle( $this->_subject );
-				include( "templates/dataset.tpl.phtml" );
+				include( "templates/" . $_SESSION["skin"] . "/dataset.tpl.phtml" );
 
 				# download file to connected usb device
 				if( $setInfo->copyToDevice( $this->_dataSet["FileName"], $this->_dev ) ) echo "success";
@@ -60,7 +60,7 @@ class Datentankstelle {
 				new CategoryInfo( $this->_subject );
 				break;
 		}
-		include( "templates/_foot.tpl.phtml" );
+		include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 	}
 
 	private function _parseQueryString() {
@@ -80,6 +80,12 @@ class Datentankstelle {
 			$this->_dev = false;
 		} else {
 			$this->_dev = filter_input( INPUT_GET, "dev", FILTER_SANITIZE_SPECIAL_CHARS );
+		}
+
+		if( isset( $_GET["skin"] ) && file_exists( "templates/" . $_GET["skin"] ) ) {
+			$_SESSION["skin"] = $_GET["skin"];
+		} else {
+			$_SESSION["skin"] = "simple";
 		}
 	}
 }

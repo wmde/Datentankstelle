@@ -1,0 +1,93 @@
+<?php if ( count( $this->_dataSets ) > 0 ): ?>
+	<?php $count = 0; ?>
+	<?php foreach ( $this->_dataSets as $item ): ?>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="tile setTile">
+		<?php $fileList = $this->getFileListByTitle( $item["Title"] ); ?>
+							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); <?php if ( $item["MediaType"] === "images" && $fileList ) { ?>startSlideshow( '<?php echo $count; ?>', imageList<?php echo $count; ?> );<?php }?>">
+								<h3><?php echo $item["Title"]; ?></h3>
+								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+							</div>
+							<div class="row" style="display: none;" id="dataSetDetail<?php echo $count; ?>">
+								<div class="col-xs-7">
+									<p>
+										<?php if ( !empty( $item["Image"] ) ): ?>
+										<img src="<?php echo $this->createImageThumb( $item["Image"] ); ?>" class="img-rounded" style="float: left; margin-right: 10px;" />
+										<?php endif; ?>
+										<?php echo nl2br( $item["LongDescription"] ); ?>
+									</p>
+									<p>
+										<?php $this->includeMediaPreview( $count, $item["MediaType"], $fileList ); ?>
+									</p>
+								</div>
+								<div class="col-xs-5">
+									<div class="infoBox tile">
+										<p class="lead">Dateidetails</p>
+										<dt>Autor</dt>
+										<dd><?php echo $item["Author"]; ?></dd>
+										<?php if ( !empty( $item["Supplier"] ) ): ?>
+										<dt>Supplier</dt>
+										<dd><?php echo $item["Supplier"]; ?></dd>
+										<?php endif; ?>
+										<dt>Lizenz</dt>
+										<dd><?php echo $this->getLicenceLink( $item["Licence"] ); ?></dd>
+										<dt>Dateigr&ouml;&szlig;e</dt>
+										<dd><?php echo $this->calcFileSize( $item["FileName"] ); ?></dd>
+										<dt>Dateityp</dt>
+										<dd><?php echo $this->getFileType( $item["FileName"] ); ?></dd>
+
+										<?php if ( !$this->isLocalSystem() ): ?>
+										<div id="dlDisabled">
+											<p style="text-align: center;">
+												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
+											</p>
+										</div>
+
+										<div id="dlEnabled" style="display: none;">
+											<form name="dlForm" method="GET">
+												<input type="hidden" name="action" id="action" value="download" />
+												<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $item["Title"] ); ?>" />
+												<input type="hidden" name="dev" id="dev" value="" />
+												<div style="text-align: center;">
+													<button type="button" id="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
+												</div>
+											</form>
+										</div>
+										<script>
+											/*$( document ).ready( function() {
+												window.setInterval( checkDevices, 2000 );
+											});*/
+										</script>
+										<?php else: ?>
+										<div style="text-align: center;">
+											<form name="dlForm" method="GET" action="downloads/<?php echo @$this->_dataSet["FileName"]; ?>">
+												<button type="submit" id="btnDownload" class="btn btn-lg">Auftanken</button>
+											</form>
+										</div>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		<?php $count++; ?>
+	<?php endforeach; ?>
+<?php endif; ?>
+
+			<script src="res/blueimp-gallery.min.js"></script>
+			<script>
+				var startSlideshow = function( count, imageList ) {
+					var gallery = blueimp.Gallery(
+						imageList,
+						{ 
+							container: '#blueimp-gallery-carousel' + count,
+							carousel: true
+						}
+					);
+				}
+			</script>
+			</div>
+		</div>
+	</div>

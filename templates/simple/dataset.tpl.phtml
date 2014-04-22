@@ -1,0 +1,83 @@
+<?php include( "templates/" . $_SESSION["skin"] . "/controls.tpl.phtml" ); ?>
+<script>
+	var checkDevices = function() {
+		$( "#dev" ).val( "" );
+
+		$.ajax({
+			url: "index.php",
+			data: { action: "check" }
+		}).done( function( response ) {
+			var deviceList = [];
+
+			// TODO: consider more than one connected device
+			$.each( $.parseJSON( response ), function( index, value ) {
+				deviceList.push( "<li>USB storage device connected: " + value + "</li>" );
+				$( "#dev" ).val( value );
+			});
+
+			// TODO: remove test output
+			$( "#deviceList" ).html( "<ul>" + deviceList.join() + "</ul>" );
+			//
+
+			// disable download button if no storage device connected
+			$( "#btnDownload" ).attr( "disabled", $( "#dev" ).val() !== "" ? false : "disabled" );
+		});
+	}
+</script>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="setInfo tile">
+					<h2><?php echo $this->_setTitle; ?></h2>
+					<p class="lead"><?php echo nl2br( $this->_dataSet["ShortDescription"] ); ?></p>
+					<p>
+						<?php $this->includeMediaPreview(); ?>
+						<?php echo nl2br( $this->_dataSet["LongDescription"] ); ?>
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="infoBox tile">
+					<h2>Datei-Informationen</h2>
+					<dt>Autor</dt>
+					<dd><?php echo $this->_dataSet["Author"]; ?></dd>
+					<dt>Lizenz</dt>
+					<dd><?php echo $this->getLicenceLink( $this->_dataSet["Licence"] ); ?></dd>
+					<dt>Dateigr&ouml;&szlig;e</dt>
+					<dd><?php echo $this->calcFileSize(); ?></dd>
+					<dt>Dateityp</dt>
+					<dd><?php echo $this->getFileType(); ?></dd>
+
+					<?php if ( !$this->isLocalSystem() ): ?>
+					<div id="dlDisabled">
+						<p style="text-align: center;">
+							Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
+						</p>
+					</div>
+
+					<div id="dlEnabled" style="display: none;">
+						<form name="dlForm" method="GET">
+							<input type="hidden" name="action" id="action" value="download" />
+							<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $this->_setTitle ); ?>" />
+							<input type="hidden" name="dev" id="dev" value="" />
+							<div style="text-align: center;">
+								<button type="button" id="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
+							</div>
+						</form>
+					</div>
+					<script>
+						$( document ).ready( function() {
+							window.setInterval( checkDevices, 2000 );
+						});
+					</script>
+					<?php else: ?>
+					<div style="text-align: center;">
+						<form name="dlForm" method="GET" action="downloads/<?php echo @$this->_dataSet["FileName"]; ?>">
+							<button type="submit" id="btnDownload" class="btn btn-lg">Auftanken</button>
+						</form>
+					</div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,23 @@
+<?php include( "templates/" . $_SESSION["skin"] . "/controls.tpl.phtml" ); ?>
+	<div class="container">
+		<?php if ( count( $this->_subCats ) > 0 ): ?>
+		<div class="row">
+			<?php foreach ( $this->_subCats as $title => $info ): ?>
+			<a href="?action=category&subject=<?php echo $title; ?>">
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<div class="tile catTile">
+						<?php if ( !empty( $info["Icon"] ) ): ?>
+						<div class="tileBackgroundImage" style="background-image: url(<?php echo $this->getIconFileUrl( $info["Icon"], 128 ); ?>);">
+							<!--img src="<?php #echo $item["Icon"]; ?>" style="border: 0;" /-->
+						</div>
+						<?php endif; ?>
+
+						<h3><?php echo $title; ?></h3>
+						<p><?php echo nl2br( $info["ShortDescription"] ); ?></p>
+					</div>
+				</div>
+			</a>
+			<?php endforeach; ?>
+		</div>
+		<?php endif; ?>
+	</div>
