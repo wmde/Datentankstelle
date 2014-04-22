@@ -3,18 +3,24 @@
 	<?php foreach ( $this->_dataSets as $item ): ?>
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="tile setTile" onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle();">
-							<h3><?php echo $item["Title"]; ?></h3>
-							<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
-							
+						<div class="tile setTile">
+							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); startSlideshow( '<?php echo $count; ?>' );">
+								<h3><?php echo $item["Title"]; ?></h3>
+								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+							</div>
 							<div class="row" style="display: none;" id="dataSetDetail<?php echo $count; ?>">
-								<div class="col-xs-8">
+								<div class="col-xs-7">
 									<p>
-										<?php $this->includeMediaPreview( $item["Title"] ); ?>
+										<?php if ( !empty( $item["Image"] ) ): ?>
+										<img src="<?php echo $this->createImageThumb( $item["Image"] ); ?>" class="img-rounded" style="float: left; margin-right: 10px;" />
+										<?php endif; ?>
 										<?php echo nl2br( $item["LongDescription"] ); ?>
 									</p>
+									<p>
+										<?php $this->includeMediaPreview( $count, $item["MediaType"], $this->getFileListByTitle( $item["Title"] ) ); ?>
+									</p>
 								</div>
-								<div class="col-xs-4">
+								<div class="col-xs-5">
 									<div class="infoBox tile">
 										<p class="lead">Dateidetails</p>
 										<dt>Autor</dt>
