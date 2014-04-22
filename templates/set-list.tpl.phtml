@@ -4,7 +4,8 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="tile setTile">
-							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); startSlideshow( '<?php echo $count; ?>' );">
+		<?php $fileList = $this->getFileListByTitle( $item["Title"] ); ?>
+							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); <?php if ( $item["MediaType"] === "images" && $fileList ) { ?>startSlideshow( '<?php echo $count; ?>', imageList<?php echo $count; ?> );<?php }?>">
 								<h3><?php echo $item["Title"]; ?></h3>
 								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
 							</div>
@@ -17,7 +18,7 @@
 										<?php echo nl2br( $item["LongDescription"] ); ?>
 									</p>
 									<p>
-										<?php $this->includeMediaPreview( $count, $item["MediaType"], $this->getFileListByTitle( $item["Title"] ) ); ?>
+										<?php $this->includeMediaPreview( $count, $item["MediaType"], $fileList ); ?>
 									</p>
 								</div>
 								<div class="col-xs-5">
@@ -46,7 +47,7 @@
 										<div id="dlEnabled" style="display: none;">
 											<form name="dlForm" method="GET">
 												<input type="hidden" name="action" id="action" value="download" />
-												<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $this->_setTitle ); ?>" />
+												<input type="hidden" name="subject" id="subject" value="<?php echo html_entity_decode( $item["Title"] ); ?>" />
 												<input type="hidden" name="dev" id="dev" value="" />
 												<div style="text-align: center;">
 													<button type="button" id="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
@@ -74,6 +75,19 @@
 		<?php $count++; ?>
 	<?php endforeach; ?>
 <?php endif; ?>
+
+			<script src="res/blueimp-gallery.min.js"></script>
+			<script>
+				var startSlideshow = function( count, imageList ) {
+					var gallery = blueimp.Gallery(
+						imageList,
+						{ 
+							container: '#blueimp-gallery-carousel' + count,
+							carousel: true
+						}
+					);
+				}
+			</script>
 			</div>
 		</div>
 	</div>

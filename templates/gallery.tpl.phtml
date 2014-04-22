@@ -7,17 +7,7 @@
 			<a class="play-pause"></a>
 			<ol class="indicator"></ol>
 		</div>
-
-		<script src="res/blueimp-gallery.min.js"></script>
-		<script>
-			var startSlideshow = function( count ) {
-				var gallery = blueimp.Gallery(
-					<?php echo json_encode( $fileList ); ?>,
-					{ 
-						container: '#blueimp-gallery-carousel' + count,
-						carousel: true
-					}
-				);
-			}
-		</script>
 	</div>
+	<script>
+		var imageList<?php echo $count; ?> = <?php echo json_encode( $fileList ); ?>;
+	</script>
