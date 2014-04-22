@@ -15,8 +15,13 @@ class MediaInfo {
 		getid3_lib::CopyTagsToComments($fileInfo);
 
 		$title = $this->_selectEntry( $fileInfo["comments"]["title"] );
-		$artist = $this->_selectEntry( $fileInfo["comments"]["artist"] );
-		return array( "artist" => $artist, "title" => $title );
+		$copyrightMessage = preg_replace(
+				"/^[0-9T:\-+]*\s/",
+				"", 
+				$this->_selectEntry( $fileInfo["comments"]["copyright_message"] )
+		);
+		
+		return array( "artist" => $copyrightMessage, "title" => $title );
 	}
 
 	private function _selectEntry( $element ) {

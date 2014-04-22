@@ -1,4 +1,3 @@
-<div class="col-md-4">
 	<script src="res/jquery.jplayer.min.js"></script>
 	<link type="text/css" href="res/jplayer.blue.monday.css" rel="stylesheet" />
 	<script src="res/jplayer.playlist.min.js"></script>
@@ -9,7 +8,8 @@
 					jPlayer: "#jquery_jplayer_1",
 					cssSelectorAncestor: "#jp_container_1"
 				},
-				<?php echo json_encode( $this->_fileList ); ?>,
+				<?php $mediaInfo = new MediaInfo(); ?>
+				<?php echo json_encode( $mediaInfo->getID3InfoByFilelist( $fileList ) ); ?>,
 				{
 					swfPath: "res/Jplayer.swf",
 					supplied: "mp3",
@@ -65,4 +65,3 @@
 			</div>
 		</div>
 	</div>
-</div>
