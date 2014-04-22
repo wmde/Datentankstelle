@@ -25,6 +25,7 @@ class CategoryInfo extends ApiRequest {
 				include( "templates/" . $_SESSION["skin"] . "/category.tpl.phtml" );
 			} else {
 				include( "templates/" . $_SESSION["skin"] . "/subcategory.tpl.phtml" );
+				include( "templates/" . $_SESSION["skin"] . "/cat-list.tpl.phtml" );
 			}
 		}
 	}

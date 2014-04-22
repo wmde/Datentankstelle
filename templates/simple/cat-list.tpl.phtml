@@ -1,0 +1,17 @@
+<?php if ( count( $this->_subCats ) > 0 ): ?>
+				<div class="row">
+	<?php foreach ( $this->_subCats as $title => $item ): ?>
+					<div class="col-xs-6">
+						<div class="tile setTile">
+						<?php if ( !empty( $item["Icon"] ) ): ?>
+							<img src="<?php echo $this->createImageThumb( $item["Icon"], 32 ); ?>" style="float: left; margin: 16px 10px 0 0;" />
+						<?php endif; ?>
+							<div>
+								<h3><?php echo $title; ?></h3>
+								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
+							</div>
+						</div>
+					</div>
+	<?php endforeach; ?>
+				</div>
+<?php endif; ?>
