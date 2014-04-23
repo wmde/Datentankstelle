@@ -59,7 +59,9 @@ class CategoryInfo extends ApiRequest {
 	public function getCategoryTree( $tree = array() ) {
 		if( count( $tree ) === 0 ) {
 			$tree[$this->_catTitle] = $this->_catInfo;
-			$tree[$this->_catTitle]["SubCats"] = $this->getSubcategories( $this->_catTitle );
+
+			// retrieve currently displayed category's subcategories
+			//$tree[$this->_catTitle]["SubCats"] = $this->getSubcategories( $this->_catTitle );
 		}
 
 		$siblings = $this->getSubcategories( $this->_catInfo["ParentCategory"] );
