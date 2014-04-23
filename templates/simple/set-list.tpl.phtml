@@ -110,7 +110,7 @@
 										<dt>Dateityp</dt>
 										<dd><?php echo Util::getFileType( $item["FileName"] ); ?></dd>
 
-										<?php if ( !Util::isLocalSystem() ): ?>
+										<?php if ( Util::isLocalSystem() ): ?>
 										<div class="dlDisabled">
 											<p style="text-align: center;">
 												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />

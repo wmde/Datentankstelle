@@ -1,5 +1,8 @@
 <?php include( "templates/" . $_SESSION["skin"] . "/controls.tpl.phtml" ); ?>
 <div class="container">
+	<div class="row hidden-xs" style="height: 100px;">
+		
+	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-1">
 			<a href="?action=category&subject=Hauptkategorie">
@@ -7,7 +10,11 @@
 			</a>
 		</div>
 		<div class="col-md-4 col-md-offset-1">
-			<div class="tile catTile" style="text-align: center; line-height: 7em; font-size: 2em;">Informieren</div>
+			<a href="?action=info&subject=FAQ">
+				<div class="tile catTile" style="text-align: center; line-height: 7em; font-size: 2em;">
+					Informieren
+				</div>
+			</a>
 		</div>
 	</div>
 </div>

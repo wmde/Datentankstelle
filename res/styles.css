@@ -28,8 +28,16 @@ html, body {
 .catTile {
 	height: 254px;
 	margin: 20px 5px;
-	background-color: #428BCA;
-	color: white;
+	border: 2px solid #428BCA;
+}
+
+.catLink {
+	color: #333333;
+}
+
+.catLink:hover {
+	color: #333333;
+	text-decoration: none;
 }
 
 .setTile {
