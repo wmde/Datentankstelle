@@ -72,7 +72,7 @@
 					</script>
 					<?php else: ?>
 					<div style="text-align: center;">
-						<form name="dlForm" method="GET" action="downloads/<?php echo @$this->_dataSet["FileName"]; ?>">
+						<form name="dlForm" method="GET" action="<?php echo DOWNLOAD_FOLDER . $item["FileName"]; ?>">
 							<button type="submit" id="btnDownload" class="btn btn-lg">Auftanken</button>
 						</form>
 					</div>

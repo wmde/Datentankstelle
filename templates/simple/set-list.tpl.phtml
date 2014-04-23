@@ -83,7 +83,7 @@
 								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
 							</div>
 							<div class="row" style="display: none;" id="dataSetDetail<?php echo $count; ?>">
-								<div class="col-xs-7">
+								<div class="col-sm-7 col-xs-12">
 									<p>
 										<?php if ( !empty( $item["Image"] ) ): ?>
 										<img src="<?php echo $this->createImageThumb( $item["Image"] ); ?>" class="img-rounded" style="float: left; margin-right: 10px;" />
@@ -94,7 +94,7 @@
 										<?php $this->includeMediaPreview( $count, $item["MediaType"], $fileList ); ?>
 									</p>
 								</div>
-								<div class="col-xs-5">
+								<div class="col-sm-5 col-xs-12">
 									<div class="infoBox tile">
 										<p class="lead">Dateidetails</p>
 										<dt>Autor</dt>
@@ -110,7 +110,7 @@
 										<dt>Dateityp</dt>
 										<dd><?php echo Util::getFileType( $item["FileName"] ); ?></dd>
 
-										<?php if ( Util::isLocalSystem() ): ?>
+										<?php if ( !Util::isLocalSystem() ): ?>
 										<div class="dlDisabled">
 											<p style="text-align: center;">
 												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
@@ -122,7 +122,7 @@
 										</div>
 										<?php else: ?>
 										<div style="text-align: center;">
-											<form name="dlForm" method="GET" action="downloads/<?php echo @$item["FileName"]; ?>">
+											<form name="dlForm" method="GET" action="<?php echo DOWNLOAD_FOLDER . $item["FileName"]; ?>">
 												<button type="submit" id="btnDownload" class="btn btn-lg">Auftanken</button>
 											</form>
 										</div>
