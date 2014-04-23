@@ -188,7 +188,7 @@ class SetInfo extends ApiRequest {
 			$pageId = $id;
 		}
 
-		$dir = "downloads/" . $pageId . "/";
+		$dir = DOWNLOAD_FOLDER . $pageId . "/";
 
 		if ( file_exists( $dir ) ) {
 			$fileList = array_values( array_diff( scandir( $dir ), array( '..', '.' ) ) );
