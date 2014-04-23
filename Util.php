@@ -11,7 +11,7 @@ class Util {
 	}
 
 	public static function copyToDevice( $fileName, $deviceName ) {
-		if ( @copy( "downloads/" . $fileName, USB_MOUNT_DIR . $deviceName . "/" . $fileName ) ) {
+		if ( @copy( DOWNLOAD_FOLDER . $fileName, USB_MOUNT_DIR . $deviceName . "/" . $fileName ) ) {
 			return true;
 		}
 
@@ -27,8 +27,8 @@ class Util {
 		$size = 0;
 		$units = array( "B", "kB", "MB", "GB" );
 
-		if ( !empty( $file ) && file_exists( "downloads/" . $file ) ) {
-			$size = filesize( "downloads/" . $file );
+		if ( !empty( $file ) && file_exists( DOWNLOAD_FOLDER . $file ) ) {
+			$size = filesize( DOWNLOAD_FOLDER . $file );
 
 			while ( $size > 1024 ) {
 				$unitIndex ++;
@@ -40,8 +40,8 @@ class Util {
 	}
 
 	public static function getFileType( $file ) {
-		if ( !empty( $file ) && file_exists( "downloads/" . $file ) ) {
-			return pathinfo( "downloads/" . $file, PATHINFO_EXTENSION );
+		if ( !empty( $file ) && file_exists( DOWNLOAD_FOLDER . $file ) ) {
+			return pathinfo( DOWNLOAD_FOLDER . $file, PATHINFO_EXTENSION );
 		}
 
 		return "&nbsp;";
