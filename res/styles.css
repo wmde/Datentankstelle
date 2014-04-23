@@ -1,9 +1,22 @@
+html, body {
+	height: 100%;
+}
+
+#wrapper {
+	height: auto !important;
+	margin: 0 auto -60px;
+	min-height: 100%;
+}
+
 #footer {
 	background-color: #F5F5F5;
-	bottom: 0;
 	height: 60px;
-	position: absolute;
 	width: 100%;
+	padding: 15px;
+}
+
+#push {
+	height: 60px;
 }
 
 .tile {
