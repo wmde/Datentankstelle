@@ -33,6 +33,7 @@
 	}
 
 	var copyDataSet = function( title ) {
+		$( '.digit' ).removeClass( 'animationStop' );
 		$.ajax({
 			url: "index.php",
 			data: {
@@ -44,6 +45,26 @@
 				$( '#copyStatus' ).text( initialCopyStatus );
 				$( '#copyStatus-icon' ).attr( "class", initialCopyStatusClasses );
 				$( '#copyDialog' ).modal();
+			}
+		}).done( function( response ) {
+			$( '.digit' ).addClass( 'animationStop' );
+			var response = $.parseJSON( response );
+			if ( response.status === 'success' ) {
+				$( '#copyStatus' ).html( response.message + "<br /><span style='cursor: pointer;' onclick='unmountDevice( \"" + connectedDevice + "\" )'>Gerät trennen</span>" );
+				$( '#copyStatus-icon' ).attr( "class", "glyphicon glyphicon-ok text-success" );
+			} else {
+				$( '#copyStatus' ).text( response.message );
+				$( '#copyStatus-icon' ).attr( "class", "glyphicon glyphicon-remove text-warning" );
+			}
+		});
+	}
+
+	var unmountDevice = function( deviceLabel ) {
+		$.ajax({
+			url: "index.php",
+			data: {
+				action: "unmount",
+				subject: deviceLabel
 			}
 		}).done( function( response ) {
 			var response = $.parseJSON( response );
@@ -111,14 +132,14 @@
 										<dd><?php echo Util::getFileType( $item["FileName"] ); ?></dd>
 
 										<?php if ( Util::isLocalSystem() ): ?>
-										<div class="dlDisabled">
+										<div class="dlDisabled" style="padding: 8px; background-color: #F5F5F5;">
 											<p style="text-align: center;">
-												Speichermedium anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
+												Speichermedium auf der rechten Seite der Zapfs&auml;ule anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
 											</p>
 										</div>
 
-										<div class="dlEnabled" style="display: none;">
-											<button type="button" onclick="copyDataSet( '<?php echo $item["FileName"]?>' )" class="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
+										<div class="dlEnabled" style="display: none; text-align: center;">
+											<button type="button" class="btn btn-lg" onclick="copyDataSet( '<?php echo $item["FileName"]?>' )" class="btnDownload" disabled="disabled" class="btn btn-lg">Auftanken</button>
 										</div>
 										<?php else: ?>
 										<div style="text-align: center;">
