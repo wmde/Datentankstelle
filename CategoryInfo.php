@@ -46,6 +46,14 @@ class CategoryInfo extends ApiRequest {
 		}
 	}
 	
+	public function getCatInfo() {
+		return $this->_catInfo;
+	}
+	
+	public function getCatTitle() {
+		return $this->_catTitle;
+	}
+	
 	public function getBreadcrumbs( $breadCrumbs ) {
 		if ( !empty( $this->_catInfo["ParentCategory"] ) ) {
 			$parentCat = new CategoryInfo( $this->_catInfo["ParentCategory"], false );

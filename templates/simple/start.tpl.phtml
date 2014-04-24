@@ -5,14 +5,23 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-1">
-			<a href="?action=category&subject=Auftanken" class="catLink">
-				<div class="tile catTile" style="text-align: center; line-height: 7.5em; font-size: 2em;">Auftanken</div>
+			<a href="?action=category&subject=<?php echo $mainCat->getCatTitle(); ?>" class="catLink">
+				<?php $catInfo = $mainCat->getCatInfo(); ?>
+				<div class="tile catTile">
+					<?php if ( !empty( $catInfo["Icon"] ) ): ?>
+					<div class="tileBackgroundImage" style="background-image: url(<?php echo $mainCat->getIconFileUrl( $catInfo["Icon"], 128 ); ?>);">
+					</div>
+					<?php endif; ?>
+
+					<h3 style="text-align: center; line-height: 7.5em;"><?php echo $mainCat->getCatTitle(); ?></h3>
+				</div>
 			</a>
 		</div>
 		<div class="col-md-4 col-md-offset-1">
 			<a href="?action=info&subject=FAQ" class="catLink">
-				<div class="tile catTile" style="padding-top: 80px; text-align: center; font-size: 2em;">
-					Was ist die Datentankstelle?
+				<div class="tile catTile">
+					<div class="tileBackgroundImage" style="background-image: url(<?php echo $mainCat->getIconFileUrl( "Datei:Icon_22.png", 128 ); ?>);"></div>
+					<h3 style="text-align: center; line-height: 7.5em;">Was ist die Datentankstelle?</h3>
 				</div>
 			</a>
 		</div>

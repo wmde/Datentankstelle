@@ -64,8 +64,7 @@ class Datentankstelle {
 			default:
 				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template of main entry point
-				//$this->_subject = "Hauptkategorie";
-				//new CategoryInfo( $this->_subject );
+				$mainCat = new CategoryInfo( TOP_CATEGORY, false );
 				include( "templates/" . $_SESSION["skin"] . "/start.tpl.phtml" );
 				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
