@@ -28,7 +28,6 @@ html, body {
 .catTile {
 	height: 254px;
 	margin: 20px 5px;
-	//border: 2px solid #428BCA;
 	background-color: #428BCA;
 	color: white;
 }
