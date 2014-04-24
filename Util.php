@@ -4,6 +4,12 @@ class Util {
 	public static function checkForDevices() {
 		if ( file_exists( USB_MOUNT_DIR ) ) {
 			$list = array_diff( scandir( USB_MOUNT_DIR ), array( ".", ".." ) );
+			foreach( $list as $key => $device ) {
+				// HACK: remove mounted internal hard drive from list of connected devices
+				if ( $device === "Data" && ( disk_total_space( USB_MOUNT_DIR . $device ) / pow( 1024, 4 ) ) > 3 ) {
+					unset( $list[$key] );
+				}
+			}
 			return $list;
 		}
 
