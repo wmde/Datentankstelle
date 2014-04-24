@@ -28,7 +28,9 @@ html, body {
 .catTile {
 	height: 254px;
 	margin: 20px 5px;
-	border: 2px solid #428BCA;
+	//border: 2px solid #428BCA;
+	background-color: #428BCA;
+	color: white;
 }
 
 .catLink {
@@ -133,6 +135,14 @@ div#digitRoll div.digit {
 @keyframes rollingNumbers {
     0% { background-position: 0 0; }
     100% { background-position: 0 -490px; }
+}
+
+.animationStop {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -ms-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
 }
 
 #wrapper1 {
