@@ -3,10 +3,10 @@
 	<script src="res/jplayer.playlist.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			var playlist = new jPlayerPlaylist(
+			var playlist<?php echo $count; ?> = new jPlayerPlaylist(
 				{
-					jPlayer: "#jquery_jplayer_1",
-					cssSelectorAncestor: "#jp_container_1"
+					jPlayer: "#jquery_jplayer_<?php echo $count; ?>",
+					cssSelectorAncestor: "#jp_container_<?php echo $count; ?>"
 				},
 				<?php $mediaInfo = new MediaInfo(); ?>
 				<?php echo json_encode( $mediaInfo->getID3InfoByFilelist( $fileList ) ); ?>,
@@ -20,9 +20,9 @@
 		});
 	</script>
 
-	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+	<div id="jquery_jplayer_<?php echo $count; ?>" class="jp-jplayer"></div>
 
-	<div id="jp_container_1" class="jp-audio">
+	<div id="jp_container_<?php echo $count; ?>" class="jp-audio">
 		<div class="jp-type-playlist">
 			<div class="jp-gui jp-interface">
 				<ul class="jp-controls">
