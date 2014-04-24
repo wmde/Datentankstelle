@@ -50,7 +50,7 @@
 			$( '.digit' ).addClass( 'animationStop' );
 			var response = $.parseJSON( response );
 			if ( response.status === 'success' ) {
-				$( '#copyStatus' ).html( response.message + "<br /><span style='cursor: pointer;' onclick='unmountDevice( \"" + connectedDevice + "\" )'>Gerät trennen</span>" );
+				$( '#copyStatus' ).html( response.message + "<br /><span style='color: #428BCA; cursor: pointer;' onclick='unmountDevice( \"" + connectedDevice + "\" )'>Speichergerät trennen</span>" );
 				$( '#copyStatus-icon' ).attr( "class", "glyphicon glyphicon-ok text-success" );
 			} else {
 				$( '#copyStatus' ).text( response.message );

@@ -16,6 +16,15 @@ class Util {
 		return false;
 	}
 
+	public static function unmountDevice( $deviceLabel ) {
+		$output = shell_exec( "pumount " . USB_MOUNT_DIR . $deviceLabel );
+		if ( $output === null ) {
+			return array( "status" => "success", "message" => "Das Gerät wurde getrennt." );
+		} else {
+			return array( "status" => "failed", "message" => "Das Gerät konnte nicht getrennt werden." );
+		}
+	}
+
 	public static function copyToDevice( $fileName, $deviceName ) {
 		if ( @copy( DOWNLOAD_FOLDER . $fileName, USB_MOUNT_DIR . $deviceName . "/" . $fileName ) ) {
 			return true;

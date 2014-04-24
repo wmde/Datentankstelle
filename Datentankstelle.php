@@ -55,6 +55,11 @@ class Datentankstelle {
 				# should only be called asynchronously
 				echo json_encode( Util::checkForDevices() );
 				break;
+			case "unmount":
+				# safely unmount connected device to prevent data loss
+				# should only be called asynchronously
+				echo json_encode( Util::unmountDevice( $this->_subject ) );
+				break;
 			case "info":
 				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# retrieve content from mediawiki and display it
