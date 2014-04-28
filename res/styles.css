@@ -169,3 +169,16 @@ div#digitRoll div.digit {
     -o-animation: rollingNumbers 100ms linear infinite;
     animation: rollingNumbers 100ms linear infinite;
 }
+
+.blueimp-gallery > .description {
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	color: #fff;
+	display: none;
+}
+.blueimp-gallery-controls > .description {
+	display: block;
+	font-size: 0.9em;
+	text-shadow: 1px 1px black;
+}

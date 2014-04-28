@@ -1,13 +1,12 @@
 	<div class="col-md-12">
-		<div id="blueimp-gallery-carousel<?php echo $count; ?>" class="blueimp-gallery blueimp-gallery-carousel">
+		<div id="blueimp-gallery-carousel<?php echo $count; ?>" class="blueimp-gallery blueimp-gallery-carousel blueimp-gallery-controls">
 			<div class="slides"></div>
-			<h3 class="title"></h3>
-			<a class="prev">‹</a>
-			<a class="next">›</a>
-			<a class="play-pause"></a>
 			<ol class="indicator"></ol>
+			<p class="description"></p>
 		</div>
 	</div>
-	<script>
-		var imageList<?php echo $count; ?> = <?php echo json_encode( $fileList ); ?>;
-	</script>
+	<div id="links<?php echo $count; ?>">
+<?php foreach ( $fileList as $file ): ?>
+		<a href="/datentankstelle/<?php echo $file; ?>" data-description="<?php echo Util::getImageDescription( $file ); ?>"></a>
+<?php endforeach; ?>
+	</div>

@@ -61,4 +61,14 @@ class Util {
 
 		return "&nbsp;";
 	}
+	
+	public static function getImageDescription( $fileName ) {
+		$descFile = preg_replace( "/.jpg$/", ".txt", $fileName );
+		if ( !empty( $descFile ) && file_exists( $descFile ) ) {
+			$description = file_get_contents( $descFile );
+			return str_replace( "\n", "", $description );
+		}
+
+		return false;
+	}
 }

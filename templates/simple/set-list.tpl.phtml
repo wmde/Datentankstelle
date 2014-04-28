@@ -99,7 +99,7 @@
 						<?php if ( !empty( $item["Icon"] ) ): ?>
 							<img src="<?php echo $this->createImageThumb( $item["Icon"], 32 ); ?>" style="float: left; margin: 16px 10px 0 0;" />
 						<?php endif; ?>
-							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); <?php if ( $item["MediaType"] === "images" && $fileList ) { ?>startSlideshow( '<?php echo $count; ?>', imageList<?php echo $count; ?> );<?php }?>">
+							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); <?php if ( $item["MediaType"] === "images" && $fileList ) { ?>startSlideshow( '<?php echo $count; ?>' );<?php }?>">
 								<h3><?php echo $item["Title"]; ?></h3>
 								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
 							</div>
@@ -110,9 +110,6 @@
 										<img src="<?php echo $this->createImageThumb( $item["Image"] ); ?>" class="img-rounded" style="float: left; margin-right: 10px;" />
 										<?php endif; ?>
 										<?php echo nl2br( $item["LongDescription"] ); ?>
-									</p>
-									<p>
-										<?php $this->includeMediaPreview( $count, $item["MediaType"], $fileList ); ?>
 									</p>
 								</div>
 								<div class="col-sm-5 col-xs-12">
@@ -150,6 +147,13 @@
 										<?php endif; ?>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<p>
+											<?php $this->includeMediaPreview( $count, $item["MediaType"], $fileList ); ?>
+										</p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -160,12 +164,20 @@
 
 			<script src="res/blueimp-gallery.min.js"></script>
 			<script>
-				var startSlideshow = function( count, imageList ) {
+				var startSlideshow = function( count ) {
 					var gallery = blueimp.Gallery(
-						imageList,
-						{ 
+						document.getElementById( 'links' + count ).getElementsByTagName( 'a' ),
+						{
 							container: '#blueimp-gallery-carousel' + count,
-							carousel: true
+							carousel: true,
+							onslide: function ( index, slide ) {
+								var text = this.list[index].getAttribute( 'data-description' ),
+									node = this.container.find( '.description' );
+								node.empty();
+								if (text) {
+									node[0].appendChild( document.createTextNode( text ) );
+								}
+							}
 						}
 					);
 				}
