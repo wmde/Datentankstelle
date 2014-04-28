@@ -7,6 +7,6 @@
 	</div>
 	<div id="links<?php echo $count; ?>">
 <?php foreach ( $fileList as $file ): ?>
-		<a href="/datentankstelle/<?php echo $file; ?>" data-description="<?php echo Util::getImageDescription( $file ); ?>"></a>
+		<a href="<?php echo $file; ?>" data-description="<?php echo Util::getImageDescription( $file ); ?>"></a>
 <?php endforeach; ?>
 	</div>
