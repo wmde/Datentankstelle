@@ -193,7 +193,11 @@ class SetInfo extends ApiRequest {
 		if ( file_exists( $dir ) ) {
 			$fileList = array_values( array_diff( scandir( $dir ), array( '..', '.' ) ) );
 			foreach( $fileList as $index => $item ) {
-				$fileList[$index] = $dir . $item;
+				if ( preg_match( "/\.txt$/", $item ) !== 0 ) {
+					unset( $fileList[$index] );
+				} else {
+					$fileList[$index]  = $dir . $item;
+				}
 			}
 			return $fileList;
 		}
