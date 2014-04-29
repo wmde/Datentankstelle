@@ -26,11 +26,16 @@ class Util {
 	}
 
 	public static function copyToDevice( $fileName, $deviceName ) {
+		Util::writeLog( "copying " . $fileName . " to flash drive\n" );
 		if ( @copy( DOWNLOAD_FOLDER . $fileName, USB_MOUNT_DIR . $deviceName . "/" . $fileName ) ) {
 			return true;
 		}
 
 		return false;
+	}
+	
+	public static function writeLog( $msg ) {
+		file_put_contents( "dts.log", date('Y-m-d H:i:s') . ": " . $msg, FILE_APPEND );
 	}
 
 	public static function isLocalSystem() {
