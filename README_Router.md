@@ -18,10 +18,12 @@ Initial setup and how to reset
 7. opkg update, then opkg install luci-ssl (wiki.openwrt.org/doc/howto/luci.essentials)
 8. /etc/init.d/uhttpd start, then /etc/init.d/uhttpd enable (for starting luci after reboot)
 9. https://192.168.1.1 (or ssh -L 8080:localhost:80 root@192.168.1.1)
+1O. Eventually upload backup archive.
 
 Config for Datentankstelle
 --------------------------
 
-* WAN port: static IP
+* ssh login with key only
+* WAN port: static IP, connected to DTS
 * on LAN ports / wifi devices get address via dhcp
 * dual band wifi
