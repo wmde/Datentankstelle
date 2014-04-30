@@ -36,3 +36,4 @@ Mobile browsers
 * Built-in Android browser: working
 * Chrome for Android: working
 * Firefox for Android -> requires specification of local domain: http://tanke.lan
+* Safari for iOS 7: working (without domain)
