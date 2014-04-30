@@ -19,4 +19,9 @@ Initial setup and how to reset
 8. /etc/init.d/uhttpd start, then /etc/init.d/uhttpd enable (for starting luci after reboot)
 9. https://192.168.1.1 (or ssh -L 8080:localhost:80 root@192.168.1.1)
 
+Config for Datentankstelle
+--------------------------
 
+* WAN port: static IP
+* on LAN ports / wifi devices get address via dhcp
+* dual band wifi
