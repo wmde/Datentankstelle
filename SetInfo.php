@@ -44,18 +44,19 @@ class SetInfo extends ApiRequest {
 	);
 	
 	private $_licences = array(
-		"CC-0"						=> "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
-		"CC-BY 3.0"					=> "https://creativecommons.org/licenses/by/3.0/deed.de",
-		"CC-BY 3.0 Deutschland"		=> "https://creativecommons.org/licenses/by/3.0/deed.de",
-		"CC-BY 4.0"					=> "https://creativecommons.org/licenses/by/4.0/deed.de",
-		"CC-BY-SA 2.0"				=> "https://creativecommons.org/licenses/by-sa/2.0/deed.de",
-		"CC-BY-SA 2.0 Österreich"	=> "https://creativecommons.org/licenses/by-sa/2.0/at/",
-		"CC-BY-SA 2.5"				=> "https://creativecommons.org/licenses/by-sa/2.5/deed.de",
-		"CC-BY-SA 3.0"				=> "https://creativecommons.org/licenses/by-sa/3.0/deed.de",
-		"CC-BY-SA 3.0 Deutschland"	=> "https://creativecommons.org/licenses/by-sa/3.0/de/",
-		"GeoNutzV"					=> "http://urheberrecht.wikimedia.de/2013/04/geodaten-geonutzv/",
-		"ODC-BY"					=> "http://opendatacommons.org/licenses/by/summary/",
-		"PD"						=> "https://creativecommons.org/publicdomain/zero/1.0/deed.de"
+		"CC-0"						=> "?action=info&subject=Lizenz:CC-0",
+		"CC-BY 3.0"					=> "?action=info&subject=Lizenz:CC-BY_3.0",
+		"CC-BY 3.0 Deutschland"		=> "?action=info&subject=Lizenz:CC-BY_3.0_Deutschland",
+		"CC-BY 4.0"					=> "?action=info&subject=Lizenz:CC-BY_4.0",
+		"CC-BY-SA 2.0"				=> "?action=info&subject=Lizenz:CC-BY-SA_2.0",
+		"CC-BY-SA 2.0 Österreich"	=> "?action=info&subject=Lizenz:CC-BY-SA_2.0_%C3%96sterreich",
+		"CC-BY-SA 2.5"				=> "?action=info&subject=Lizenz:CC-BY-SA_2.5",
+		"CC-BY-SA 3.0"				=> "?action=info&subject=Lizenz:CC-BY-SA_3.0",
+		"CC-BY-SA 3.0 Deutschland"	=> "?action=info&subject=Lizenz:CC-BY-SA_3.0_Deutschland",
+		"GeoNutzV"					=> "?action=info&subject=Lizenz:GeoNutzV",
+		"ODC-BY"					=> "?action=info&subject=Lizenz:ODC-BY",
+		"PD"						=> "?action=info&subject=Lizenz:PD",
+		"CC-BY 2.0"					=> "?action=info&subject=Lizenz:CC-BY_2.0"
 	);
 
 	public function SetInfo( $setTitle, $displayType ) {
