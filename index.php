@@ -26,6 +26,8 @@ if( !defined( "WIKI_API_URL" ) || !defined( "TITLE_CATEGORIES" ) || !defined( "T
 }
 
 ### application initialization ###
+session_start();
+
 require_once( "Datentankstelle.php" );
 $dts = new Datentankstelle();
 $dts->processRequest();
