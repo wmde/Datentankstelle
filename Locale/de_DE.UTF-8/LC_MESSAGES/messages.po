@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Datentankstelle\n"
+"POT-Creation-Date: 2014-07-17 16:53+0100\n"
+"PO-Revision-Date: 2014-07-17 17:08+0100\n"
+"Last-Translator: Jakob Warkotsch <jakob.warkotsch@wikimedia.de>\n"
+"Language-Team: Wikimedia\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:41
+#: ../../../templates/simple/dataset.tpl.phtml:16
+msgid "file_information"
+msgstr "Datei-Informationen"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:42
+#: ../../../templates/gas-station/set-list.tpl.phtml:27
+#: ../../../templates/simple/dataset.tpl.phtml:17
+msgid "author"
+msgstr "Autor"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:44
+#: ../../../templates/gas-station/set-list.tpl.phtml:33
+#: ../../../templates/simple/dataset.tpl.phtml:19
+msgid "licence"
+msgstr "Lizenz"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:46
+#: ../../../templates/simple/dataset.tpl.phtml:21
+msgid "file_size"
+msgstr "Dateigröße"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:48
+#: ../../../templates/simple/dataset.tpl.phtml:23
+msgid "file_type"
+msgstr "Dateityp"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:54
+#: ../../../templates/simple/dataset.tpl.phtml:29
+msgid "connect_storage_device"
+msgstr "Speichermedium anschließen zum Auftanken mit diesem Datenset"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:64
+#: ../../../templates/gas-station/dataset.tpl.phtml:76
+#: ../../../templates/simple/dataset.tpl.phtml:39
+#: ../../../templates/simple/dataset.tpl.phtml:51
+msgid "fill_up"
+msgstr "Auftanken"
+
+#: ../../../templates/gas-station/subcategory.tpl.phtml:7
+#: ../../../templates/simple/subcategory.tpl.phtml:7
+msgid "categories"
+msgstr "Kategorien"
+
+#: ../../../templates/gas-station/start.tpl.phtml:5
+msgid "browse"
+msgstr "Stöbern"
+
+#: ../../../templates/gas-station/start.tpl.phtml:9
+msgid "inform"
+msgstr "Informieren"
+
+#: ../../../templates/gas-station/search-result.tpl.phtml:5
+#: ../../../templates/simple/search-result.tpl.phtml:5
+msgid "search_results"
+msgstr "Suchergebnisse"
+
+#: ../../../templates/gas-station/search-result.tpl.phtml:13
+#: ../../../templates/simple/search-result.tpl.phtml:13
+msgid "no_datasets_found"
+msgstr "Es wurden keine Datensätze gefunden."
+
+#: ../../../templates/gas-station/controls.tpl.phtml:20
+msgid "faq"
+msgstr "FAQ"
+
+#: ../../../templates/gas-station/controls.tpl.phtml:28
+#: ../../../templates/simple/controls.tpl.phtml:37
+msgid "by"
+msgstr "von"
+
+#: ../../../templates/gas-station/set-list.tpl.phtml:26
+msgid "file_details"
+msgstr "Dateidetails"
+
+#: ../../../templates/gas-station/set-list.tpl.phtml:30
+msgid "supplier"
+msgstr "Supplier"
+
+#: ../../../templates/simple/start.tpl.phtml:12
+msgid "what_is_datentankstelle"
+msgstr "Was ist die Datentankstelle?"
+
+#: ../../../templates/simple/_foot.tpl.phtml:8
+msgid "service_by_wikimedia"
+msgstr "Die Datentankstelle ist ein Service von Wikimedia Deutschland e. V."
+
+#: ../../../templates/simple/_foot.tpl.phtml:9
+msgid "licence_information"
+msgstr "Lizenzhinweise"
+
+#: ../../../templates/simple/_foot.tpl.phtml:10
+msgid "imprint"
+msgstr "Impressum"
+
+#: ../../../templates/simple/controls.tpl.phtml:5
+msgid "back"
+msgstr "Zurück"
+
+#: ../../../templates/simple/controls.tpl.phtml:6
+msgid "front_page"
+msgstr "Startseite"
+
+#: ../../../templates/simple/controls.tpl.phtml:19
+msgid "help"
+msgstr "Hilfe"

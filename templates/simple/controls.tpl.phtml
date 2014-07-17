@@ -2,8 +2,8 @@
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<ul class="navbar-nav nav">
-						<li style="display: inline-block; margin-left: 20px;"><a class="active" href="javascript:history.back();"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</a></li>
-						<li style="display: inline-block;"><a href="<?php echo BASE_DIR; ?>"><span class="glyphicon glyphicon-home"></span> Startseite</a></li>
+						<li style="display: inline-block; margin-left: 20px;"><a class="active" href="javascript:history.back();"><span class="glyphicon glyphicon-chevron-left"></span> <?php echo _( 'back' ); ?></a></li>
+						<li style="display: inline-block;"><a href="<?php echo BASE_DIR; ?>"><span class="glyphicon glyphicon-home"></span> <?php echo _( 'front_page' ); ?></a></li>
 						<button type="button" class="navbar-toggle" style="margin-right: 30px;" data-toggle="collapse" data-target="#navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
@@ -16,7 +16,7 @@
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<div class="col-sm-6 col-md-6 pull-right">
 						<ul class="nav navbar-nav">
-							<li><a href="?action=info&subject=Hilfe" class="link-highlighted">Hilfe</a></li>
+							<li><a href="?action=info&subject=Hilfe" class="link-highlighted"><?php echo _( 'help' ); ?></a></li>
 						</ul>
 						<form class="navbar-inline" srole="search">
 							<div class="input-group" style="padding: 8px 0 10px 0;">
@@ -34,7 +34,7 @@
 		<div class="container" style="padding-top: 60px;">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Datentankstelle<small> von&nbsp;Wikimedia&nbsp;Deutschland&nbsp;e.&nbsp;V.</small></h1>
+					<h1>Datentankstelle <small><?php echo _( 'by' ); ?> Wikimedia Deutschland e. V.</small></h1>
 				</div>
 			</div>
 		</div>
