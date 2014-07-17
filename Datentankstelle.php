@@ -22,6 +22,7 @@ require_once( "CategoryInfo.php" );
 require_once( "SetInfo.php" );
 require_once( "InfoPage.php" );
 require_once( "Util.php" );
+require_once( "LanguageHandler.php" );
 
 class Datentankstelle {
 
@@ -30,8 +31,11 @@ class Datentankstelle {
 	
 	private $_dataSet = array();
 	private $_fileList = array();
+
+	private $_language;
 	
 	public function __construct() {
+		$this->_language = new LanguageHandler();
 		$this->_parseQueryString();
 	}
 
@@ -118,6 +122,10 @@ class Datentankstelle {
 			$_SESSION["skin"] = $_GET["skin"];
 		} else {
 			$_SESSION["skin"] = "simple";
+		}
+
+		if ( isset( $_GET['lang'] ) ) {
+			$this->_language->changeTo( $_GET['lang'] );
 		}
 	}
 }
