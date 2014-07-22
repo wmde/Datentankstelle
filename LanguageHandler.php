@@ -2,7 +2,7 @@
 class LanguageHandler {
 	const defaultLanguage = 'en';
 
-	private $_supportedLanguages = [
+	private static $_supportedLanguages = [
 		'en' => 'en_US.UTF-8',
 		'de' => 'de_DE.UTF-8',
 	];
@@ -15,15 +15,19 @@ class LanguageHandler {
 		}
 	}
 
+	public static function supportedLanguages() {
+		return self::$_supportedLanguages;
+	}
+
 	private function _supported( $language ) {
-		return isset( $language, $this->_supportedLanguages );
+		return isset( $language, self::$_supportedLanguages );
 	}
 
 	public function changeTo( $language ) {
 		if ( $this->_supported( $language ) ) {
-			$this->_setLanguage( $this->_supportedLanguages[$language] );
+			$this->_setLanguage( self::$_supportedLanguages[$language] );
 		} else {
-			$this->_setLanguage( $this->_supportedLanguages[self::defaultLanguage] );
+			$this->_setLanguage( self::$_supportedLanguages[self::defaultLanguage] );
 		}
 	}
 
