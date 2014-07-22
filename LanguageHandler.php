@@ -1,19 +1,30 @@
 <?php
 class LanguageHandler {
-	const defaultLanguage = 'en_US.UTF-8';
+	const defaultLanguage = 'en';
+
+	private $_supportedLanguages = [
+		'en' => 'en_US.UTF-8',
+		'de' => 'de_DE.UTF-8',
+	];
 
 	function __construct() {
 		if ( isset( $_SESSION['language'] ) ) {
-			$this->changeTo( $_SESSION['language'] );
-		} else { // TODO: Try getting the language from the user's language settings
-			$this->changeTo( self::defaultLanguage );
+			$this->_setLanguage( $_SESSION['language'] );
+		} else {
+			$this->changeTo( substr( $_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2 ) );
 		}
 	}
 
-	public function changeTo( $language ) {
-		// FIXME: Check if $language is one of our supported languages
+	private function _supported( $language ) {
+		return isset( $language, $this->_supportedLanguages );
+	}
 
-		$this->_setLanguage( $language );
+	public function changeTo( $language ) {
+		if ( $this->_supported( $language ) ) {
+			$this->_setLanguage( $this->_supportedLanguages[$language] );
+		} else {
+			$this->_setLanguage( $this->_supportedLanguages[self::defaultLanguage] );
+		}
 	}
 
 	private function _setLanguage( $language ) {
