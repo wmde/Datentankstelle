@@ -28,9 +28,6 @@ class Datentankstelle {
 	private $_action;
 	private $_subject;
 	
-	private $_dataSet = array();
-	private $_fileList = array();
-	
 	public function Datentankstelle() {
 		$this->_parseQueryString();
 	}
