@@ -29,13 +29,13 @@ class CategoryInfo extends ApiRequest {
 		"ParentCategory",
 		"ShortDescription",
 		"LongDescription",
-		"Icon"
+		"Icon",
+		"Id"
 	);
-	
 
 	public function CategoryInfo( $title, $fetchSubCats = true ) {
-		$this->_catTitle = $title;
-		$this->populateItemInfo( $title );
+		$id = $title . '/' . Datentankstelle::getInstance()->getLanguage()->languageToken();
+		$this->populateItemInfo( $id );
 		if ( $fetchSubCats ) {
 			$this->_subCats = $this->getSubcategories( $title );
 
@@ -48,14 +48,20 @@ class CategoryInfo extends ApiRequest {
 		}
 	}
 
-	public function populateItemInfo() {
+	public function populateItemInfo( $id ) {
 		$params = array(
 			"action" => "askargs",
 			"format" => "php",
-			"conditions" => $this->_catTitle,
+			"conditions" => array(
+				'Id::' . $id,
+			),
 			"printouts" => $this->_dataFields
 		);
 		$response = $this->sendRequest( $params );
+		if ( isset( $response['query']['results'] ) ) {
+			// The key of this array returned by the API is the title of the category.
+			$this->_catTitle = key($response['query']['results']);
+		}
 
 		if ( array_key_exists( "query", $response ) && count( $response["query"]["results"] ) > 0 ) {
 			foreach( $response["query"]["results"][$this->_catTitle]["printouts"] as $key => $value ) {

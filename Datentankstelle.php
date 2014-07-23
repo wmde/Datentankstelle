@@ -51,8 +51,8 @@ class Datentankstelle {
 			case "category":
 				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template for given category
-				new CategoryInfo( $this->_subject );
-				new SetInfo( $this->_subject, "setList" );
+				$category = new CategoryInfo( $this->_subject );
+				new SetInfo( $category->getCatTitle(), "setList" );
 				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 			case "dataset":

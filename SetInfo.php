@@ -40,7 +40,8 @@ class SetInfo extends ApiRequest {
 		"Supplier",
 		"Licence",
 		"FileName",
-		"MediaType"
+		"MediaType",
+		"Id"
 	);
 	
 	private $_licences = array(
@@ -104,7 +105,6 @@ class SetInfo extends ApiRequest {
 		$response = $this->sendRequest( $params );
 
 		$dataSets = array();
-
 		$index = 0;
 		foreach( $response["query"]["results"] as $name => $info ) {
 			$dataSets[$index] = array( "Title" => $name );
