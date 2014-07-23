@@ -2,6 +2,8 @@
 class LanguageHandler {
 	const defaultLanguage = 'en';
 
+	private $_language;
+
 	private static $_supportedLanguages = [
 		'en' => 'en_US.UTF-8',
 		'de' => 'de_DE.UTF-8',
@@ -13,6 +15,10 @@ class LanguageHandler {
 		} else {
 			$this->changeTo( substr( $_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2 ) );
 		}
+	}
+
+	public function languageToken() {
+		return array_flip( self::supportedLanguages() )[$this->_language];
 	}
 
 	public static function supportedLanguages() {
@@ -33,6 +39,7 @@ class LanguageHandler {
 
 	private function _setLanguage( $language ) {
 		$_SESSION['language'] = $language;
+		$this->_language = $language;
 
 		putenv( "LANG=" . $language );
 		setlocale( LC_ALL, $language ); // TODO: Figure out whether $language really has to be a language that the operating system knows
