@@ -29,17 +29,10 @@ class Datentankstelle {
 	private $_action;
 	private $_subject;
 	private $_language;
-
-	private static $_instance;
 	
 	public function __construct() {
 		$this->_language = new LanguageHandler();
 		$this->_parseQueryString();
-		self::$_instance = $this;
-	}
-
-	public static function getInstance() {
-		return self::$_instance;
 	}
 
 	public function getLanguage() {
