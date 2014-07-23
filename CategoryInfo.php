@@ -33,11 +33,10 @@ class CategoryInfo extends ApiRequest {
 		"Id"
 	);
 
-	public function CategoryInfo( $title, $fetchSubCats = true ) {
-		$id = $title . '/' . Datentankstelle::getInstance()->getLanguage()->languageToken();
+	public function CategoryInfo( $id, $fetchSubCats = true ) {
 		$this->populateItemInfo( $id );
 		if ( $fetchSubCats ) {
-			$this->_subCats = $this->getSubcategories( $title );
+			$this->_subCats = $this->getSubcategories( $this->_catTitle );
 
 			if ( empty( $this->_catInfo["ParentCategory"] ) ) {
 				include( "templates/" . $_SESSION["skin"] . "/category.tpl.phtml" );

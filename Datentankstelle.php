@@ -51,7 +51,7 @@ class Datentankstelle {
 			case "category":
 				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template for given category
-				$category = new CategoryInfo( $this->_subject );
+				$category = new CategoryInfo( $this->_subject . '/' . $this->_language->languageToken() );
 				new SetInfo( $category->getCatTitle(), "setList" );
 				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
