@@ -44,7 +44,7 @@ class Datentankstelle {
 			case "category":
 				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template for given category
-				$category = new CategoryInfo( $this->_subject . '/' . $this->_language->languageToken() );
+				$category = new CategoryInfo( $this->_categoryNameToId( $this->_subject ) );
 				new SetInfo( $category->getCatTitle(), "setList" );
 				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
@@ -92,11 +92,15 @@ class Datentankstelle {
 			default:
 				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template of main entry point
-				$mainCat = new CategoryInfo( TOP_CATEGORY, false );
+				$mainCat = new CategoryInfo( $this->_categoryNameToId( TOP_CATEGORY ), false );
 				include( "templates/" . $_SESSION["skin"] . "/start.tpl.phtml" );
 				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 		}
+	}
+
+	private function _categoryNameToId( $name ) {
+		return $name . '/' . $this->_language->languageToken();
 	}
 
 	private function _parseQueryString() {
