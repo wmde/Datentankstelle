@@ -24,7 +24,6 @@ class CategoryInfo extends ApiRequest {
 
 	private $_catTitle;
 	private $_catInfo;
-	private $_breadCrumbs = array();
 
 	private $_dataFields = array(
 		"ParentCategory",
