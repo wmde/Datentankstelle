@@ -29,9 +29,6 @@ class Datentankstelle {
 	private $_action;
 	private $_subject;
 	
-	private $_dataSet = array();
-	private $_fileList = array();
-
 	private $_language;
 	
 	public function __construct() {
