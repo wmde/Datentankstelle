@@ -28,7 +28,7 @@ class Datentankstelle {
 	private $_action;
 	private $_subject;
 	
-	public function Datentankstelle() {
+	public function __construct() {
 		$this->_parseQueryString();
 	}
 
