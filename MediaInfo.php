@@ -33,14 +33,21 @@ class MediaInfo {
 		# put media info of different ID3 versions into one place
 		getid3_lib::CopyTagsToComments($fileInfo);
 
-		$title = $this->_selectEntry( $fileInfo["comments"]["title"] );
-		$copyrightMessage = preg_replace(
-				"/^[0-9T:\-+]*\s/",
-				"", 
-				$this->_selectEntry( $fileInfo["comments"]["copyright_message"] )
-		);
+		if ( isset( $fileInfo['comments']['copyright_message'] ) ) {
+			$artist = preg_replace(
+				'/^[0-9T:\-+]*\s/',
+				'',
+				 $this->_selectEntry( $fileInfo['comments']['copyright_message'] )
+			);
+		}
+		if ( isset( $fileInfo['comments']['title'] ) ) {
+			$title = $this->_selectEntry( $fileInfo["comments"]["title"] );
+		}
 		
-		return array( "artist" => $copyrightMessage, "title" => $title );
+		return array(
+			'artist' =>  isset( $artist ) ? $artist : _( 'unknown' ),
+			'title' => isset( $title ) ? $title : _( 'unknown' ),
+		);
 	}
 
 	private function _selectEntry( $element ) {
