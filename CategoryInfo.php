@@ -68,6 +68,19 @@ class CategoryInfo extends ApiRequest {
 			}
 		}
 	}
+
+	private function _getIdFromTitle( $title ) {
+		$response = $this->sendRequest( array(
+			'action' => 'askargs',
+			'format' => 'php',
+			'conditions' => $title,
+			'printouts' => 'Id',
+		) );
+
+		if ( isset( $response['query']['results'][$title]['printouts']['Id'][0] ) ) {
+			return $response['query']['results'][$title]['printouts']['Id'][0];
+		}
+	}
 	
 	public function getCatInfo() {
 		return $this->_catInfo;
@@ -79,7 +92,10 @@ class CategoryInfo extends ApiRequest {
 	
 	public function getBreadcrumbs( $breadCrumbs ) {
 		if ( !empty( $this->_catInfo["ParentCategory"] ) ) {
-			$parentCat = new CategoryInfo( $this->_catInfo["ParentCategory"], false );
+			$parentCat = new CategoryInfo(
+				$this->_getIdFromTitle( $this->_catInfo["ParentCategory"] ),
+				false
+			);
 			$breadCrumbs[] = $parentCat->_catTitle;
 			$breadCrumbs = $parentCat->getBreadCrumbs( $breadCrumbs );
 		}
@@ -103,7 +119,7 @@ class CategoryInfo extends ApiRequest {
 			$tree[$parentName] = $siblings;
 			unset( $tree[$this->_catTitle] );
 
-			$parent = new CategoryInfo( $this->_catInfo["ParentCategory"], false );
+			$parent = new CategoryInfo( $this->_getIdFromTitle( $parentName ), false );
 			$tree[$parentName] = $parent->_catInfo;
 			$tree[$parentName]["SubCats"] = $siblings;
 
