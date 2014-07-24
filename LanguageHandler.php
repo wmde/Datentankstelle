@@ -4,6 +4,7 @@ class LanguageHandler {
 
 	private $_language;
 
+	// The keys of this array are used to query pages by language. They have to be 2 chars long.
 	private static $_supportedLanguages = [
 		'en' => 'en_US.UTF-8',
 		'de' => 'de_DE.UTF-8',

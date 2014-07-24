@@ -61,6 +61,15 @@ class Util {
 		return ( $_SERVER["REMOTE_ADDR"] === "127.0.0.1" ? true : false );
 	}
 
+	public static function idToDirectoryHash( $id ) {
+		return md5( substr( $id, 0, -3 ) );
+	}
+
+	// TODO: This is a bit hacky. Maybe come up with a better solution at a later point.
+	public static function filePathToWebPath( $file ) {
+		return BASE_DIR . 'downloads' . substr( $file, strlen( DOWNLOAD_FOLDER ) - 1 );
+	}
+
 	public static function calcFileSize( $file ) {
 		$unitIndex = 0;
 		$size = 0;

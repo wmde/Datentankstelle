@@ -197,18 +197,10 @@ class SetInfo extends ApiRequest {
 	}
 	
 	public function getFileListByTitle( $title ) {
-		$params = array(
-			"action" => "query",
-			"format" => "php",
-			"titles" => $title
-		);
-
-		$response = $this->sendRequest( $params );
-		foreach( $response["query"]["pages"] as $id => $info ) {
-			$pageId = $id;
-		}
-
-		$dir = DOWNLOAD_FOLDER . $pageId . "/";
+		$id = array_reduce( $this->_dataSets, function( $id, $page ) use( $title ) {
+			return $page['Title'] === $title ? $page['Id'] : $id;
+		} );
+		$dir = DOWNLOAD_FOLDER . Util::idToDirectoryHash( $id ) . "/";
 
 		if ( file_exists( $dir ) ) {
 			$fileList = array_values( array_diff( scandir( $dir ), array( '..', '.' ) ) );
