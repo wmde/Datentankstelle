@@ -100,7 +100,7 @@
 							<img src="<?php echo $this->createImageThumb( $item["Icon"], 32 ); ?>" style="float: left; margin: 16px 10px 0 0;" />
 						<?php endif; ?>
 							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); <?php if ( $item["MediaType"] === "images" && $fileList ) { ?>startSlideshow( '<?php echo $count; ?>' );<?php }?>">
-								<h3><?php echo $item["Title"]; ?></h3>
+								<h3><?php echo CategoryInfo::removeLanguageEndingFromTitle( $item["Title"] ); ?></h3>
 								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
 							</div>
 							<div class="row" style="display: none;" id="dataSetDetail<?php echo $count; ?>">

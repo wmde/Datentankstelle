@@ -23,7 +23,7 @@
 					</div>
 					<?php endif; ?>
 
-					<h3 style="text-align: center; line-height: 7.5em;"><?php echo $mainCat->getCatTitle(); ?></h3>
+					<h3 style="text-align: center; line-height: 7.5em;"><?php echo CategoryInfo::removeLanguageEndingFromTitle( $mainCat->getCatTitle() ); ?></h3>
 				</div>
 			</a>
 		</div>

@@ -11,6 +11,6 @@
 				</div>
 			</div>
 			<div class="col-md-8 col-sm-12">
-				<h2><?php echo $this->_catTitle; ?></h2>
+				<h2><?php echo CategoryInfo::removeLanguageEndingFromTitle( $this->_catTitle ); ?></h2>
 				<p class="lead"><?php echo nl2br( $this->_catInfo["ShortDescription"] ); ?></p>
 				<p><?php echo nl2br( $this->_catInfo["LongDescription"] ); ?></p>

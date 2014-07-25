@@ -138,9 +138,9 @@ class CategoryInfo extends ApiRequest {
 					echo '<img src="' . $this->getIconFileUrl( $info["Icon"], 32 ) . '" style="padding-right: 10px;" />';
 				}
 				if ( $title === $this->_catTitle ) {
-					echo "<strong>" . $title . "</strong>";
+					echo "<strong>" . self::removeLanguageEndingFromTitle( $title ) . "</strong>";
 				} else {
-					echo $title;
+					echo self::removeLanguageEndingFromTitle( $title );
 				}
 				echo '</a>';
 			}
@@ -211,5 +211,13 @@ class CategoryInfo extends ApiRequest {
 			'action' => 'category',
 			'subject' => Util::normalizeId( $id ),
 		) );
+	}
+
+	public static function removeLanguageEndingFromTitle( $title ) {
+		return preg_replace(
+			'/\/\w{2}$/',
+			'',
+			$title
+		);
 	}
 }

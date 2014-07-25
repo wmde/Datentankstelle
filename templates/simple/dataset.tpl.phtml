@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="setInfo tile">
-					<h2><?php echo $this->_setTitle; ?></h2>
+					<h2><?php echo CategoryInfo::removeLanguageEndingFromTitle( $this->_setTitle ); ?></h2>
 					<p class="lead"><?php echo nl2br( $this->_dataSet["ShortDescription"] ); ?></p>
 					<p>
 						<?php $this->includeMediaPreview(); ?>
