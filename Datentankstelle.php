@@ -35,10 +35,6 @@ class Datentankstelle {
 		$this->_parseQueryString();
 	}
 
-	public function getLanguage() {
-		return $this->_language;
-	}
-
 	public function processRequest() {
 		switch( $this->_action ) {
 			case "category":
