@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Datentankstelle\n"
-"POT-Creation-Date: 2014-07-22 12:19+0100\n"
-"PO-Revision-Date: 2014-07-22 14:07+0100\n"
+"POT-Creation-Date: 2014-07-25 14:41+0100\n"
+"PO-Revision-Date: 2014-07-25 14:47+0100\n"
 "Last-Translator: Jakob Warkotsch <jakob.warkotsch@wikimedia.de>\n"
 "Language-Team: Wikimedia\n"
 "Language: de\n"
@@ -14,6 +14,10 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../MediaInfo.php:48 ../../../MediaInfo.php:49
+msgid "unknown"
+msgstr "Unbekannt"
 
 #: ../../../templates/gas-station/dataset.tpl.phtml:41
 #: ../../../templates/simple/dataset.tpl.phtml:16
@@ -54,6 +58,7 @@ msgstr "Speichermedium anschließen zum Auftanken mit diesem Datenset"
 #: ../../../templates/gas-station/set-list.tpl.phtml:65
 #: ../../../templates/simple/dataset.tpl.phtml:39
 #: ../../../templates/simple/dataset.tpl.phtml:51
+#: ../../../templates/simple/set-list.tpl.phtml:193
 msgid "fill_up"
 msgstr "Auftanken"
 
@@ -85,7 +90,7 @@ msgid "faq"
 msgstr "FAQ"
 
 #: ../../../templates/gas-station/controls.tpl.phtml:28
-#: ../../../templates/simple/controls.tpl.phtml:45
+#: ../../../templates/simple/controls.tpl.phtml:48
 msgid "by"
 msgstr "von"
 
@@ -125,12 +130,20 @@ msgstr "Startseite"
 msgid "language"
 msgstr "Sprache"
 
-#: ../../../templates/simple/controls.tpl.phtml:27
+#: ../../../templates/simple/controls.tpl.phtml:26
+msgid "lang_"
+msgstr ""
+
+#: ../../../templates/simple/controls.tpl.phtml:30
 msgid "help"
 msgstr "Hilfe"
 
-msgid "lang_de"
-msgstr "Deutsch"
+#: ../../../templates/simple/set-list.tpl.phtml:198
+msgid "fill_up_in_progress"
+msgstr "Betankung läuft"
 
 msgid "lang_en"
 msgstr "Englisch"
+
+msgid "lang_de"
+msgstr "Deutsch"
