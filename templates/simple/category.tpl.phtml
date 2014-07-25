@@ -3,7 +3,7 @@
 		<?php if ( count( $this->_subCats ) > 0 ): ?>
 		<div class="row">
 			<?php foreach ( $this->_subCats as $title => $info ): ?>
-			<a href="?action=category&subject=<?php echo $title; ?>">
+			<a href="<?php echo CategoryInfo::categoryURL( $info['Id'] ); ?>">
 				<div class="col-md-4 col-sm-6 col-xs-12">
 					<div class="tile catTile">
 						<?php if ( !empty( $info["Icon"] ) ): ?>

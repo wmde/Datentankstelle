@@ -61,8 +61,13 @@ class Util {
 		return ( $_SERVER["REMOTE_ADDR"] === "127.0.0.1" ? true : false );
 	}
 
+	// Cuts the language ending off the Id (e.g. "Geodaten/en" => "Geodaten")
+	public static function normalizeId( $id ) {
+		return substr ( $id, 0, -3 );
+	}
+
 	public static function idToDirectoryHash( $id ) {
-		return md5( substr( $id, 0, -3 ) );
+		return md5( self::normalizeId( $id ) );
 	}
 
 	// TODO: This is a bit hacky. Maybe come up with a better solution at a later point.

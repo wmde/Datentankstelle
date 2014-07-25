@@ -15,7 +15,7 @@
 			</a>
 		</div>
 		<div class="col-md-4 col-md-offset-2">
-			<a href="?action=category&subject=<?php echo $mainCat->getCatTitle(); ?>" class="catLink">
+			<a href="<?php echo CategoryInfo::categoryURL( $mainCat->getCatInfo()['Id'] ); ?>" class="catLink">
 				<?php $catInfo = $mainCat->getCatInfo(); ?>
 				<div class="tile catTile">
 					<?php if ( !empty( $catInfo["Icon"] ) ): ?>

@@ -2,7 +2,7 @@
 				<div class="row">
 	<?php foreach ( $this->_subCats as $title => $item ): ?>
 					<div class="col-xs-12">
-						<a href="?action=category&subject=<?php echo $title; ?>" class="catLink">
+						<a href="<?php echo CategoryInfo::categoryURL( $item['Id'] ); ?>" class="catLink">
 							<div class="tile setTile">
 							<?php if ( !empty( $item["Icon"] ) ): ?>
 								<img src="<?php echo $this->getIconFileUrl( $item["Icon"], 32 ); ?>" style="float: left; margin: 16px 10px 0 0;" />

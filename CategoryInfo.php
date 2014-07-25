@@ -133,7 +133,7 @@ class CategoryInfo extends ApiRequest {
 		foreach( $tree as $title => $info ) {
 			// TODO: top category may have a different name
 			if ( $title !== "Hauptkategorie" ) {
-				echo '<a href="?action=category&subject=' . $title .  '" style="padding-left: ' . ( 15 + $indentation * 32 ) . 'px;" class="list-group-item">';
+				echo '<a href="' . self::categoryURL( $info['Id'] ) .  '" style="padding-left: ' . ( 15 + $indentation * 32 ) . 'px;" class="list-group-item">';
 				if ( !empty( $info["Icon"] ) ) {
 					echo '<img src="' . $this->getIconFileUrl( $info["Icon"], 32 ) . '" style="padding-right: 10px;" />';
 				}
@@ -204,5 +204,12 @@ class CategoryInfo extends ApiRequest {
 		}
 
 		return $iconUrl;
+	}
+
+	public static function categoryURL( $id ) {
+		return '?' . http_build_query( array(
+			'action' => 'category',
+			'subject' => Util::normalizeId( $id ),
+		) );
 	}
 }
