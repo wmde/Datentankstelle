@@ -18,9 +18,7 @@
  *
  */
 
-require_once( "ApiRequest.php" );
-require_once( "MediaInfo.php" );
-require_once( "CategoryInfo.php" );
+namespace Datentankstelle;
 
 class SetInfo extends ApiRequest {
 
@@ -60,7 +58,7 @@ class SetInfo extends ApiRequest {
 		"CC-BY 2.0"					=> "?action=info&subject=Lizenz:CC-BY_2.0"
 	);
 
-	public function SetInfo( $setTitle, $displayType ) {
+	public function __construct( $setTitle, $displayType ) {
 		$this->_setTitle = $setTitle;
 
 		if ( $displayType === "singleSet" ) {
@@ -82,13 +80,13 @@ class SetInfo extends ApiRequest {
 					break;
 			}
 
-			include( "templates/" . $_SESSION["skin"] . "/dataset.tpl.phtml" );
+			include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/dataset.tpl.phtml" );
 		} elseif( $displayType === "searchResult" ) {
 			$this->_dataSets = $this->searchDataSets( $setTitle );
-			include( "templates/" . $_SESSION["skin"] . "/search-result.tpl.phtml" );
+			include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/search-result.tpl.phtml" );
 		} elseif( $displayType === "setList" ) {
 			$this->_dataSets = $this->getDataSets( $setTitle );
-			include( "templates/" . $_SESSION["skin"] . "/set-list.tpl.phtml" );
+			include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/set-list.tpl.phtml" );
 		}
 	}
 
@@ -221,10 +219,10 @@ class SetInfo extends ApiRequest {
 		if ( is_array( $fileList ) && count( $fileList ) > 0 ) {
 			switch( $type ) {
 				case "images":
-					include( "templates/" . $_SESSION["skin"] . "/gallery.tpl.phtml" );
+					include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/gallery.tpl.phtml" );
 					break;
 				case "audio":
-					include( "templates/" . $_SESSION["skin"] . "/audio-player.tpl.phtml" );
+					include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/audio-player.tpl.phtml" );
 					break;
 				default:
 					break;

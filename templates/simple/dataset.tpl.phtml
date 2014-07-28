@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="setInfo tile">
-					<h2><?php echo CategoryInfo::removeLanguageEndingFromTitle( $this->_setTitle ); ?></h2>
+					<h2><?php echo Datentankstelle\CategoryInfo::removeLanguageEndingFromTitle( $this->_setTitle ); ?></h2>
 					<p class="lead"><?php echo nl2br( $this->_dataSet["ShortDescription"] ); ?></p>
 					<p>
 						<?php $this->includeMediaPreview(); ?>
@@ -19,11 +19,11 @@
 					<dt><?php echo _( 'licence' ); ?></dt>
 					<dd><?php echo $this->getLicenceLink( $this->_dataSet["Licence"] ); ?></dd>
 					<dt><?php echo _( 'file_size' ); ?></dt>
-					<dd><?php echo Util::calcFileSize(); ?></dd>
+					<dd><?php echo Datentankstelle\Util::calcFileSize(); ?></dd>
 					<dt><?php echo _( 'file_type' ); ?></dt>
 					<dd><?php echo $this->getFileType(); ?></dd>
 
-					<?php if ( !Util::isLocalSystem() ): ?>
+					<?php if ( !Datentankstelle\Util::isLocalSystem() ): ?>
 					<div id="dlDisabled">
 						<p style="text-align: center;">
 							<?php echo _( 'connect_storage_device' ) ?><br />

@@ -18,16 +18,14 @@
  *
  */
 
-require_once('lib/getid3/getid3.php');
+namespace Datentankstelle;
+
+use getid3_lib;
+use stdClass;
 
 class MediaInfo {
-	
-	public function MediaInfo() {
-		
-	}
-
 	public function getID3Info( $filename ) {
-		$getID3 = new getID3();
+		$getID3 = new \getID3();
 		$fileInfo = $getID3->analyze( $filename );
 
 		# put media info of different ID3 versions into one place

@@ -21,7 +21,7 @@
 									<?php echo _( 'language' ); ?> <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<?php foreach ( LanguageHandler::supportedLanguages() as $lang => $_): ?>
+									<?php foreach ( Datentankstelle\LanguageHandler::supportedLanguages() as $lang => $_): ?>
 										<?php $queryString = http_build_query( array_merge( $_GET, array( 'lang' => $lang ) ) ); ?>
 										<li><a href="?<?php echo $queryString ?>"><?php echo _( 'lang_' . $lang ); ?></a></li>
 									<?php endforeach; ?>

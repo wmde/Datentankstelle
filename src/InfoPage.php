@@ -18,18 +18,18 @@
  *
  */
 
-require_once( "ApiRequest.php" );
+namespace Datentankstelle;
 
 class InfoPage extends ApiRequest {
 
 	private $_pageTitle;
 	private $_pageContent;
 
-	public function InfoPage( $pageTitle ) {
+	public function __construct( $pageTitle ) {
 		$this->_pageTitle = $pageTitle;
 		$this->_pageContent = $this->getPageContent( $this->_pageTitle );
 
-		include( "templates/" . $_SESSION["skin"] . "/info.tpl.phtml" );
+		include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/info.tpl.phtml" );
 	}
 
 	public function getPageContent() {

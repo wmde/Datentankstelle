@@ -18,7 +18,7 @@
  *
  */
 
-require_once( "ApiRequest.php" );
+namespace Datentankstelle;
 
 class CategoryInfo extends ApiRequest {
 
@@ -33,16 +33,17 @@ class CategoryInfo extends ApiRequest {
 		"Id"
 	);
 
-	public function CategoryInfo( $id, $fetchSubCats = true ) {
+	public function __construct( $id, $fetchSubCats = true ) {
 		$this->populateItemInfo( $id );
 		if ( $fetchSubCats ) {
 			$this->_subCats = $this->getSubcategories( $this->_catTitle );
 
 			if ( empty( $this->_catInfo["ParentCategory"] ) ) {
-				include( "templates/" . $_SESSION["skin"] . "/category.tpl.phtml" );
+
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/category.tpl.phtml" );
 			} else {
-				include( "templates/" . $_SESSION["skin"] . "/subcategory.tpl.phtml" );
-				include( "templates/" . $_SESSION["skin"] . "/cat-list.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/subcategory.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/cat-list.tpl.phtml" );
 			}
 		}
 	}

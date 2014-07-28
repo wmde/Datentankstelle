@@ -17,12 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
-
-require_once( "CategoryInfo.php" );
-require_once( "SetInfo.php" );
-require_once( "InfoPage.php" );
-require_once( "Util.php" );
-require_once( "LanguageHandler.php" );
+namespace Datentankstelle;
 
 class Datentankstelle {
 
@@ -38,17 +33,20 @@ class Datentankstelle {
 	public function processRequest() {
 		switch( $this->_action ) {
 			case "category":
-				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
+
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
+
 				# show template for given category
 				$category = new CategoryInfo( $this->_categoryNameToId( $this->_subject ) );
+
 				new SetInfo( $category->getCatTitle(), "setList" );
-				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 			case "dataset":
-				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template for given data set
 				$setInfo = new SetInfo( $this->_subject, "singleSet" );
-				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 			case "download":
 				# download file to connected usb device
@@ -64,10 +62,10 @@ class Datentankstelle {
 
 				break;
 			case "search":
-				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template for search results
 				$setInfo = new SetInfo( $this->_subject, "searchResult" );
-				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 			case "check":
 				# check file system for connected usb storage devices
@@ -80,17 +78,17 @@ class Datentankstelle {
 				echo json_encode( Util::unmountDevice( $this->_subject ) );
 				break;
 			case "info":
-				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# retrieve content from mediawiki and display it
 				new InfoPage( $this->_subject );
-				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 			default:
-				include( "templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# show template of main entry point
 				$mainCat = new CategoryInfo( $this->_categoryNameToId( TOP_CATEGORY ), false );
-				include( "templates/" . $_SESSION["skin"] . "/start.tpl.phtml" );
-				include( "templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/start.tpl.phtml" );
+				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 		}
 	}

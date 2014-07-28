@@ -2,13 +2,13 @@
 				<div class="row">
 	<?php foreach ( $this->_subCats as $title => $item ): ?>
 					<div class="col-xs-12">
-						<a href="<?php echo CategoryInfo::categoryURL( $item['Id'] ); ?>" class="catLink">
+						<a href="<?php echo Datentankstelle\CategoryInfo::categoryURL( $item['Id'] ); ?>" class="catLink">
 							<div class="tile setTile">
 							<?php if ( !empty( $item["Icon"] ) ): ?>
 								<img src="<?php echo $this->getIconFileUrl( $item["Icon"], 32 ); ?>" style="float: left; margin: 16px 10px 0 0;" />
 							<?php endif; ?>
 								<div>
-									<h3><?php echo CategoryInfo::removeLanguageEndingFromTitle( $title ); ?></h3>
+									<h3><?php echo Datentankstelle\CategoryInfo::removeLanguageEndingFromTitle( $title ); ?></h3>
 									<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
 								</div>
 							</div>

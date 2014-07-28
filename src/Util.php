@@ -18,6 +18,8 @@
  *
  */
 
+namespace Datentankstelle;
+
 class Util {
 
 	public static function checkForDevices() {

@@ -15,7 +15,7 @@
 			</a>
 		</div>
 		<div class="col-md-4 col-md-offset-2">
-			<a href="<?php echo CategoryInfo::categoryURL( $mainCat->getCatInfo()['Id'] ); ?>" class="catLink">
+			<a href="<?php echo Datentankstelle\CategoryInfo::categoryURL( $mainCat->getCatInfo()['Id'] ); ?>" class="catLink">
 				<?php $catInfo = $mainCat->getCatInfo(); ?>
 				<div class="tile catTile">
 					<?php if ( !empty( $catInfo["Icon"] ) ): ?>
@@ -23,7 +23,7 @@
 					</div>
 					<?php endif; ?>
 
-					<h3 style="text-align: center; line-height: 7.5em;"><?php echo CategoryInfo::removeLanguageEndingFromTitle( $mainCat->getCatTitle() ); ?></h3>
+					<h3 style="text-align: center; line-height: 7.5em;"><?php echo Datentankstelle\CategoryInfo::removeLanguageEndingFromTitle( $mainCat->getCatTitle() ); ?></h3>
 				</div>
 			</a>
 		</div>

@@ -8,10 +8,10 @@
 					jPlayer: "#jquery_jplayer_<?php echo $count; ?>",
 					cssSelectorAncestor: "#jp_container_<?php echo $count; ?>"
 				},
-				<?php $mediaInfo = new MediaInfo(); ?>
+				<?php $mediaInfo = new Datentankstelle\MediaInfo(); ?>
 				<?php
 					echo json_encode( array_map( function( $file ) {
-						$file->mp3 = Util::filePathToWebPath( $file->mp3 );
+						$file->mp3 = Datentankstelle\Util::filePathToWebPath( $file->mp3 );
 				
 						return $file;
 					}, $mediaInfo->getID3InfoByFilelist( $fileList ) ) );

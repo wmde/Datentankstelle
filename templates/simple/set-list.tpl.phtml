@@ -1,5 +1,5 @@
 <script>
-<?php if ( Util::isLocalSystem() ): ?>
+<?php if ( Datentankstelle\Util::isLocalSystem() ): ?>
 	$( document ).ready( function() {
 		window.setInterval( checkDevices, 2000 );
 	});
@@ -100,7 +100,7 @@
 							<img src="<?php echo $this->createImageThumb( $item["Icon"], 32 ); ?>" style="float: left; margin: 16px 10px 0 0;" />
 						<?php endif; ?>
 							<div onclick="$('#dataSetDetail<?php echo $count; ?>').slideToggle(); <?php if ( $item["MediaType"] === "images" && $fileList ) { ?>startSlideshow( '<?php echo $count; ?>' );<?php }?>">
-								<h3><?php echo CategoryInfo::removeLanguageEndingFromTitle( $item["Title"] ); ?></h3>
+								<h3><?php echo Datentankstelle\CategoryInfo::removeLanguageEndingFromTitle( $item["Title"] ); ?></h3>
 								<p class="lead"><?php echo nl2br( $item["ShortDescription"] ); ?></p>
 							</div>
 							<div class="row" style="display: none;" id="dataSetDetail<?php echo $count; ?>">
@@ -124,11 +124,11 @@
 										<dt>Lizenz</dt>
 										<dd><?php echo nl2br( $this->getLicenceLink( $item["Licence"] ) ); ?></dd>
 										<dt>Dateigr&ouml;&szlig;e</dt>
-										<dd><?php echo Util::calcFileSize( $item["FileName"] ); ?></dd>
+										<dd><?php echo Datentankstelle\Util::calcFileSize( $item["FileName"] ); ?></dd>
 										<dt>Dateityp</dt>
-										<dd><?php echo Util::getFileType( $item["FileName"] ); ?></dd>
+										<dd><?php echo Datentankstelle\Util::getFileType( $item["FileName"] ); ?></dd>
 
-										<?php if ( Util::isLocalSystem() ): ?>
+										<?php if ( Datentankstelle\Util::isLocalSystem() ): ?>
 										<div class="dlDisabled" style="padding: 8px; background-color: #F5F5F5;">
 											<p style="text-align: center;">
 												Speichermedium auf der rechten Seite der Zapfs&auml;ule anschlie&szlig;en zum Auftanken mit diesem Datenset<br />

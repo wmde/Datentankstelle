@@ -1,4 +1,6 @@
 <?php
+namespace Datentankstelle;
+
 class LanguageHandler {
 	const defaultLanguage = 'en';
 

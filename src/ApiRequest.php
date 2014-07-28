@@ -17,6 +17,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
+
+namespace Datentankstelle;
+
 class ApiRequest {
 
 	/**
