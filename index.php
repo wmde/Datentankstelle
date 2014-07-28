@@ -31,7 +31,6 @@ if ( !file_exists( 'vendor/autoload.php' ) ) {
 	die( 'The autoload file does not exist. Please run `composer install`' );
 }
 require 'vendor/autoload.php';
-require_once( 'lib/getid3/getid3.php' );
 
 $dts = new \Datentankstelle\Datentankstelle();
 $dts->processRequest();
