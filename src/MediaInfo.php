@@ -20,16 +20,16 @@
 
 namespace Datentankstelle;
 
-use getid3_lib;
+use GetId3_Lib_Helper;
 use stdClass;
 
 class MediaInfo {
 	public function getID3Info( $filename ) {
-		$getID3 = new \getID3();
+		$getID3 = new \GetId3_GetId3();
 		$fileInfo = $getID3->analyze( $filename );
 
 		# put media info of different ID3 versions into one place
-		getid3_lib::CopyTagsToComments($fileInfo);
+		GetId3_Lib_Helper::CopyTagsToComments($fileInfo);
 
 		if ( isset( $fileInfo['comments']['copyright_message'] ) ) {
 			$artist = preg_replace(
