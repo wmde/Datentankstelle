@@ -1,7 +1,6 @@
 <?php
 /**
- * main entry point
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,18 +18,33 @@
  *
  */
 
-### configuration ###
-require_once( "local-config.php" );
-if( !defined( "WIKI_API_URL" ) || !defined( "TITLE_CATEGORIES" ) || !defined( "TITLE_SETS" ) ) {
-	die( "The application initialization failed, please check your configuration files." );
-}
+namespace Datentankstelle;
 
-### application initialization ###
-session_start();
-if ( !file_exists( 'vendor/autoload.php' ) ) {
-	die( 'The autoload file does not exist. Please run `composer install`' );
-}
-require 'vendor/autoload.php';
+class InfoPage extends ApiRequest {
 
-$dts = new \Datentankstelle\Datentankstelle();
-$dts->processRequest();
+	private $_pageTitle;
+	private $_pageContent;
+
+	public function __construct( $pageTitle ) {
+		$this->_pageTitle = $pageTitle;
+		$this->_pageContent = $this->getPageContent( $this->_pageTitle );
+
+		include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/info.tpl.phtml" );
+	}
+
+	public function getPageContent() {
+		# hack: API ignores $wgDefaultUserOptions["editsection"] = false;
+		$params = array(
+			"action" => "parse",
+			"format" => "php",
+			"text" => "__NOTOC____NOEDITSECTION__{{:" . $this->_pageTitle . "}}"
+		);
+
+		$response = $this->sendRequest( $params );
+		if( $response ) {
+			return $response["parse"]["text"]["*"];
+		}
+
+		return false;
+	}
+}
