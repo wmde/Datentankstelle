@@ -25,11 +25,11 @@ use stdClass;
 
 class MediaInfo {
 	public function getID3Info( $filename ) {
-		$getID3 = new \GetId3_GetId3();
+		$getID3 = new \getID3();
 		$fileInfo = $getID3->analyze( $filename );
 
 		# put media info of different ID3 versions into one place
-		GetId3_Lib_Helper::CopyTagsToComments($fileInfo);
+		\getid3_lib::CopyTagsToComments($fileInfo);
 
 		if ( isset( $fileInfo['comments']['copyright_message'] ) ) {
 			$artist = preg_replace(

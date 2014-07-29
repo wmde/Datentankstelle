@@ -1,8 +1,7 @@
 {
 	"name": "wmde/datentankstelle",
 	"require": {
-		"php": ">=5.3.0",
-        "phansys/getid3": "@dev"
+		"php": ">=5.3.0"
 	},
     "require-dev": {
         "phpunit/phpunit": "3.7.x"
