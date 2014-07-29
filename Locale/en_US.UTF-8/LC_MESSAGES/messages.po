@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Datentankstelle\n"
+"POT-Creation-Date: 2014-07-25 14:41+0100\n"
+"PO-Revision-Date: 2014-07-29 11:20+0100\n"
+"Last-Translator: Jakob Warkotsch <jakob.warkotsch@wikimedia.de>\n"
+"Language-Team: Wikimedia\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../MediaInfo.php:48 ../../../MediaInfo.php:49
+msgid "unknown"
+msgstr "Unknown"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:41
+#: ../../../templates/simple/dataset.tpl.phtml:16
+msgid "file_information"
+msgstr "File information"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:42
+#: ../../../templates/gas-station/set-list.tpl.phtml:27
+#: ../../../templates/simple/dataset.tpl.phtml:17
+msgid "author"
+msgstr "Author"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:44
+#: ../../../templates/gas-station/set-list.tpl.phtml:33
+#: ../../../templates/simple/dataset.tpl.phtml:19
+msgid "licence"
+msgstr "License"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:46
+#: ../../../templates/simple/dataset.tpl.phtml:21
+msgid "file_size"
+msgstr "File size"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:48
+#: ../../../templates/simple/dataset.tpl.phtml:23
+msgid "file_type"
+msgstr "File type"
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:54
+#: ../../../templates/gas-station/set-list.tpl.phtml:43
+#: ../../../templates/simple/dataset.tpl.phtml:29
+msgid "connect_storage_device"
+msgstr "Please connect your storage device to receive this data set."
+
+#: ../../../templates/gas-station/dataset.tpl.phtml:64
+#: ../../../templates/gas-station/dataset.tpl.phtml:76
+#: ../../../templates/gas-station/set-list.tpl.phtml:53
+#: ../../../templates/gas-station/set-list.tpl.phtml:65
+#: ../../../templates/simple/dataset.tpl.phtml:39
+#: ../../../templates/simple/dataset.tpl.phtml:51
+#: ../../../templates/simple/set-list.tpl.phtml:193
+msgid "fill_up"
+msgstr "Refuel"
+
+#: ../../../templates/gas-station/subcategory.tpl.phtml:7
+#: ../../../templates/simple/subcategory.tpl.phtml:7
+msgid "categories"
+msgstr "Categories"
+
+#: ../../../templates/gas-station/start.tpl.phtml:5
+msgid "browse"
+msgstr "Browse"
+
+#: ../../../templates/gas-station/start.tpl.phtml:9
+msgid "inform"
+msgstr "Information"
+
+#: ../../../templates/gas-station/search-result.tpl.phtml:5
+#: ../../../templates/simple/search-result.tpl.phtml:5
+msgid "search_results"
+msgstr "Search results"
+
+#: ../../../templates/gas-station/search-result.tpl.phtml:13
+#: ../../../templates/simple/search-result.tpl.phtml:13
+msgid "no_datasets_found"
+msgstr "No data sets found."
+
+#: ../../../templates/gas-station/controls.tpl.phtml:20
+msgid "faq"
+msgstr "FAQ"
+
+#: ../../../templates/gas-station/controls.tpl.phtml:28
+#: ../../../templates/simple/controls.tpl.phtml:48
+msgid "by"
+msgstr "by"
+
+#: ../../../templates/gas-station/set-list.tpl.phtml:26
+msgid "file_details"
+msgstr "File details"
+
+#: ../../../templates/gas-station/set-list.tpl.phtml:30
+msgid "supplier"
+msgstr "Supplier"
+
+#: ../../../templates/simple/start.tpl.phtml:12
+msgid "what_is_datentankstelle"
+msgstr "What is the Data Pump?"
+
+#: ../../../templates/simple/_foot.tpl.phtml:8
+msgid "service_by_wikimedia"
+msgstr "The Data Pump is a service by Wikimedia Deutschland."
+
+#: ../../../templates/simple/_foot.tpl.phtml:9
+msgid "licence_information"
+msgstr "License information"
+
+#: ../../../templates/simple/_foot.tpl.phtml:10
+msgid "imprint"
+msgstr "Imprint"
+
+#: ../../../templates/simple/controls.tpl.phtml:5
+msgid "back"
+msgstr "Back"
+
+#: ../../../templates/simple/controls.tpl.phtml:6
+msgid "front_page"
+msgstr "Home"
+
+#: ../../../templates/simple/controls.tpl.phtml:21
+msgid "language"
+msgstr "Language"
+
+#: ../../../templates/simple/controls.tpl.phtml:26
+msgid "lang_"
+msgstr ""
+
+#: ../../../templates/simple/controls.tpl.phtml:30
+msgid "help"
+msgstr "Help"
+
+#: ../../../templates/simple/set-list.tpl.phtml:198
+msgid "fill_up_in_progress"
+msgstr "Refuelling in progress"
+
+msgid "lang_en"
+msgstr "English"
+
+msgid "lang_de"
+msgstr "German"
+
+msgid "datentankstelle"
+msgstr "Data Pump"
