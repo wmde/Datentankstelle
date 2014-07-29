@@ -114,24 +114,24 @@
 								</div>
 								<div class="col-sm-5 col-xs-12">
 									<div class="infoBox tile">
-										<p class="lead">Dateidetails</p>
-										<dt>Autor</dt>
+										<p class="lead"><?php echo _( 'file_details' ); ?></p>
+										<dt><?php echo _( 'author' ); ?></dt>
 										<dd><?php echo nl2br( $item["Author"] ); ?></dd>
 										<?php if ( !empty( $item["Supplier"] ) ): ?>
-										<dt>Bereitgestellt durch</dt>
-										<dd><?php echo nl2br( $item["Supplier"] ); ?></dd>
+											<dt><?php echo _( 'supplier' ); ?></dt>
+											<dd><?php echo nl2br( $item["Supplier"] ); ?></dd>
 										<?php endif; ?>
-										<dt>Lizenz</dt>
-										<dd><?php echo nl2br( $this->getLicenceLink( $item["Licence"] ) ); ?></dd>
-										<dt>Dateigr&ouml;&szlig;e</dt>
+										<dt><?php echo _( 'licence' ); ?></dt>
+										<dd><?php echo $this->getLicenceLink( $item["Licence"] ); ?></dd>
+										<dt><?php echo _( 'file_size' ); ?></dt>
 										<dd><?php echo Datentankstelle\Util::calcFileSize( $item["FileName"] ); ?></dd>
-										<dt>Dateityp</dt>
+										<dt><?php echo _( 'file_type' ); ?></dt>
 										<dd><?php echo Datentankstelle\Util::getFileType( $item["FileName"] ); ?></dd>
 
 										<?php if ( Datentankstelle\Util::isLocalSystem() ): ?>
 										<div class="dlDisabled" style="padding: 8px; background-color: #F5F5F5;">
 											<p style="text-align: center;">
-												Speichermedium auf der rechten Seite der Zapfs&auml;ule anschlie&szlig;en zum Auftanken mit diesem Datenset<br />
+												<?php echo _( 'connect_storage_device' ); ?><br />
 											</p>
 										</div>
 
@@ -141,7 +141,7 @@
 										<?php else: ?>
 										<div style="text-align: center;">
 											<form name="dlForm" method="GET" action="<?php echo DOWNLOAD_FOLDER . $item["FileName"]; ?>">
-												<button type="submit" id="btnDownload" class="btn btn-lg">Auftanken</button>
+												<button type="submit" id="btnDownload" class="btn btn-lg"><?php echo _( 'fill_up' ); ?></button>
 											</form>
 										</div>
 										<?php endif; ?>
