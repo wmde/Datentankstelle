@@ -80,7 +80,7 @@ class Datentankstelle {
 			case "info":
 				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_head.tpl.phtml" );
 				# retrieve content from mediawiki and display it
-				new InfoPage( $this->_subject );
+				new InfoPage( $this->_categoryNameToId( $this->_subject ) );
 				include( __DIR__ . "/../templates/" . $_SESSION["skin"] . "/_foot.tpl.phtml" );
 				break;
 			default:
