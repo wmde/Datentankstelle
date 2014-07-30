@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Datentankstelle\n"
 "POT-Creation-Date: 2014-07-25 14:41+0100\n"
-"PO-Revision-Date: 2014-07-25 16:27+0100\n"
+"PO-Revision-Date: 2014-07-30 12:38+0100\n"
 "Last-Translator: Jakob Warkotsch <jakob.warkotsch@wikimedia.de>\n"
 "Language-Team: Wikimedia\n"
 "Language: de\n"
@@ -141,6 +141,12 @@ msgstr "Hilfe"
 #: ../../../templates/simple/set-list.tpl.phtml:198
 msgid "fill_up_in_progress"
 msgstr "Betankung läuft"
+
+msgid "fill_up_complete"
+msgstr "Betankung erfolgreich"
+
+msgid "fill_up_failed"
+msgstr "Betankung fehlgeschlagen"
 
 msgid "lang_en"
 msgstr "Englisch"

@@ -53,10 +53,10 @@ class Datentankstelle {
 				$response = array();
 				if( Util::copyToDevice( $this->_subject, $this->_dev ) ) {
 					$response["status"] = "success";
-					$response["message"] = "Betankung erfolgreich";
+					$response["message"] = _( 'fill_up_complete' );
 				} else {
 					$response["status"] = "failed";
-					$response["message"] = "Betankung fehlgeschlagen";
+					$response["message"] = _( 'fill_up_failed' );
 				}
 				echo json_encode( $response );
 
