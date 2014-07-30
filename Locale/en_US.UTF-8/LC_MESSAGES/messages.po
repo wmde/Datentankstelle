@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Datentankstelle\n"
 "POT-Creation-Date: 2014-07-25 14:41+0100\n"
-"PO-Revision-Date: 2014-07-29 11:20+0100\n"
+"PO-Revision-Date: 2014-07-30 10:38+0100\n"
 "Last-Translator: Jakob Warkotsch <jakob.warkotsch@wikimedia.de>\n"
 "Language-Team: Wikimedia\n"
 "Language: de\n"
@@ -50,7 +50,9 @@ msgstr "File type"
 #: ../../../templates/gas-station/set-list.tpl.phtml:43
 #: ../../../templates/simple/dataset.tpl.phtml:29
 msgid "connect_storage_device"
-msgstr "Please connect your storage device to receive this data set."
+msgstr ""
+"Please connect your storage device to the panel on the right-hand side of "
+"the Data Pump in order to refuel."
 
 #: ../../../templates/gas-station/dataset.tpl.phtml:64
 #: ../../../templates/gas-station/dataset.tpl.phtml:76
