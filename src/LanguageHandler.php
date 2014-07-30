@@ -16,7 +16,7 @@ class LanguageHandler {
 		if ( isset( $_SESSION['language'] ) ) {
 			$this->_setLanguage( $_SESSION['language'] );
 		} else {
-			$this->changeTo( substr( $_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2 ) );
+			$this->changeTo( self::defaultLanguage );
 		}
 	}
 
