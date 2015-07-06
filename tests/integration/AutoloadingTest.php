@@ -12,9 +12,8 @@ class AutoloadingTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( class_exists( 'Datentankstelle\Datentankstelle' ) );
 	}
 
-	public function testCanClassesOfDependencies() {
-		$this->assertTrue( class_exists( 'GetId3_GetId3' ) );
-		$this->assertTrue( class_exists( 'GetId3_Lib_Helper' ) );
+	public function testCanLoadClassesOfDependencies() {
+		$this->assertTrue( class_exists( 'getID3' ) );
 	}
 
 }
