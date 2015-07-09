@@ -23,7 +23,10 @@
 			<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-		<script src="js/right-click-blocker.js"></script>
+
+		<?php if ( Util::isLocalSystem() ): ?>
+			<script src="js/right-click-blocker.js"></script>
+		<?php endif; ?>
 	</head>
 
 	<body>
